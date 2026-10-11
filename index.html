@@ -82,7 +82,7 @@ a{color:inherit;text-decoration:none}
 .hint{font-size:12px;color:var(--faint);font-family:var(--mono);margin-left:auto}
 
 /* stage */
-.stage{position:relative;height:min(calc(100vh - 68px - 150px),860px);aspect-ratio:4/5;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.stage{position:relative;height:min(calc(100vh - 68px - 150px),860px,calc((100vw - 56px - 260px - clamp(32px,6vw,96px)) * 1.25));aspect-ratio:4/5;touch-action:pan-y;user-select:none;-webkit-user-select:none}
 .screen{position:absolute;inset:0;border-radius:16px;overflow:hidden;background:var(--panel);clip-path:inset(0 0 0 0 round 16px);will-change:clip-path}
 .screen video,.screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .thread{position:absolute;left:0;right:0;top:50%;height:2px;margin-top:-1px;background:var(--accent);border-radius:2px;opacity:0;pointer-events:none;transform-origin:50% 50%}
