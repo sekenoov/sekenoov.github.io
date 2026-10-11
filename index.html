@@ -3,686 +3,457 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>sekenov · pieces</title>
-<meta name="description" content="small interface moments, designed and coded by hand">
-<meta name="theme-color" content="#0d100f">
-<meta property="og:title" content="sekenov · pieces">
-<meta property="og:description" content="small interface moments, designed and coded by hand">
+<title>Dias Sekenov</title>
+<meta name="description" content="Dias Sekenov, product designer who codes. Small interface moments, built by hand.">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#dcdce0" media="(prefers-color-scheme: light)">
+<meta property="og:title" content="Dias Sekenov">
+<meta property="og:description" content="product designer who codes. small interface moments, built by hand">
 <meta property="og:image" content="https://sekenoov.github.io/og.jpg">
 <meta property="og:url" content="https://sekenoov.github.io/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@sekenoov">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230d100f'/%3E%3Crect x='6' y='15' width='20' height='2' rx='1' fill='%23ff5b34'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='6' width='14' height='20' rx='3.5' fill='%238e8e93'/%3E%3Crect x='12' y='4' width='17' height='24' rx='4' fill='%23000'/%3E%3C/svg%3E">
 <style>
 :root{
-  --bg:#0d100f; --panel:#141917; --ink:#e9e6d9; --mute:#8d9089; --faint:#5b5f5a;
-  --line:rgba(233,230,217,.12); --accent:#ff5b34; --green:#3ccf6e;
-  --ease:cubic-bezier(.2,.8,.2,1); --ease-in:cubic-bezier(.6,0,.8,.2);
-  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
-  --mono:ui-monospace,"SF Mono",Menlo,monospace;
-  color-scheme:dark;
-}
-:root[data-theme="light"]{
-  --bg:#ecebe4; --panel:#e2e0d7; --ink:#151817; --mute:#6d706a; --faint:#a3a59e;
-  --line:rgba(21,24,23,.12); --accent:#ec4a22; --green:#22a956;
+  --bg:#dcdce0; --ink:#1c1c1e; --mute:#6e6e73; --hair:rgba(0,0,0,.1); --link:#007aff;
+  --card-shadow:0 1px 2px rgba(0,0,0,.08),0 12px 40px rgba(0,0,0,.16);
   color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#000; --ink:#f2f2f7; --mute:#8e8e93; --hair:rgba(255,255,255,.1); --link:#0a84ff;
+    --card-shadow:0 0 0 .5px rgba(255,255,255,.12),0 12px 40px rgba(0,0,0,.6);
+    color-scheme:dark;
+  }
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
-body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow:hidden;transition:background-color .4s,color .4s}
+body{
+  background:var(--bg);color:var(--ink);overflow:hidden;
+  font:15px/1.4 -apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+  overscroll-behavior:none;
+}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 a{color:inherit;text-decoration:none}
-::selection{background:var(--accent);color:#fff}
 
-/* layout */
-.app{height:100%;display:grid;grid-template-rows:auto 1fr auto;grid-template-columns:minmax(0,1fr);padding:0 28px}
-.top{display:flex;align-items:center;gap:18px;height:68px}
-.mark{font-weight:650;letter-spacing:-.02em;font-size:17px}
-.role{color:var(--mute);font-size:14px}
-.spacer{flex:1}
-.chip{height:34px;padding:0 14px;border-radius:17px;border:1px solid var(--line);font-size:13px;display:inline-flex;align-items:center;gap:8px;transition:border-color .2s,background-color .2s}
-.chip:hover{border-color:color-mix(in srgb,var(--ink) 30%,transparent)}
-.chip:active{transform:scale(.97)}
-.talk{background:var(--ink);color:var(--bg);border-color:transparent;font-weight:550}
-.talk:hover{border-color:transparent}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--green);position:relative;flex:none}
-.dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1.5px solid var(--green);opacity:0;animation:ping 2.4s var(--ease) infinite}
-@keyframes ping{0%{transform:scale(.4);opacity:.9}70%,100%{transform:scale(1.5);opacity:0}}
+/* header: name on the left, how to reach out on the right */
+.bar{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:flex-start;padding:22px 28px;pointer-events:none}
+.bar>*{pointer-events:auto}
+.who b{display:block;font-size:17px;font-weight:600;letter-spacing:-.022em}
+.who span{color:var(--mute);font-size:15px;letter-spacing:-.01em}
+.reach{text-align:right}
+.reach .links{display:flex;gap:18px;justify-content:flex-end;font-size:17px;letter-spacing:-.022em}
+.reach .links a,.reach .links button{color:var(--link);transition:opacity .1s}
+.reach .links a:active,.reach .links button:active{opacity:.45}
+.reach>span{color:var(--mute);font-size:15px;letter-spacing:-.01em}
+.swap{display:inline-grid;height:1.4em;overflow:hidden;vertical-align:top;text-align:right}
+.swap i{font-style:normal;grid-area:1/1;transition:transform .45s cubic-bezier(.2,.9,.3,1),opacity .3s}
+.swap i:last-child{transform:translateY(100%);opacity:0}
+.copied .swap i:first-child{transform:translateY(-100%);opacity:0}
+.copied .swap i:last-child{transform:none;opacity:1}
 
-/* equalizer on the sound chip */
-.eq{display:inline-flex;gap:2px;align-items:flex-end;height:11px}
-.eq i{width:2px;height:3px;background:currentColor;border-radius:1px;transition:height .25s}
-#sound .eq{display:none}
-.sound-on .x{display:none}
-.sound-on .eq{display:inline-flex}
-.sound-on .eq i{animation:eq .9s ease-in-out infinite}
-.sound-on .eq i:nth-child(2){animation-delay:-.3s}
-.sound-on .eq i:nth-child(3){animation-delay:-.6s}
-@keyframes eq{0%,100%{height:3px}50%{height:11px}}
+/* the switcher */
+.sw{position:fixed;inset:0;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab}
+.sw.dragging{cursor:grabbing}
+.card{position:absolute;left:50%;top:0;will-change:transform;transform-origin:50% 50%}
+.frame{position:absolute;inset:0;border-radius:20px;overflow:hidden;box-shadow:var(--card-shadow);background:#888;transform:translateZ(0)}
+.frame img,.frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.frame video{opacity:0}
+.frame video.live{opacity:1}
+.shade{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none}
+.label{position:absolute;left:2px;bottom:calc(100% + 10px);display:flex;align-items:center;gap:8px;transform-origin:0 100%;white-space:nowrap;pointer-events:none}
+.label img{width:22px;height:22px;border-radius:6px;object-fit:cover;box-shadow:0 0 0 .5px var(--hair)}
+.label span{font-size:15px;font-weight:600;letter-spacing:-.015em;text-transform:capitalize}
 
-.main{display:grid;grid-template-columns:minmax(260px,400px) auto;justify-content:center;align-items:center;gap:clamp(32px,6vw,96px);min-height:0}
+/* what you see once a card is open */
+.detail{position:fixed;left:50%;z-index:40;width:min(560px,calc(100vw - 32px));transform:translateX(-50%);text-align:center;pointer-events:none;opacity:0}
+.detail p{font-size:17px;letter-spacing:-.022em;line-height:1.35}
+.detail p::first-letter{text-transform:uppercase}
+.detail .row{margin-top:6px;color:var(--mute);font-size:15px;display:flex;gap:14px;justify-content:center}
+.detail button{color:var(--link)}
 
-/* info column */
-.info{display:flex;flex-direction:column;gap:18px;min-width:0}
-.count{font-family:var(--mono);font-size:13px;color:var(--mute);display:flex;align-items:center;gap:6px}
-.odo{display:inline-flex;color:var(--ink)}
-.odo .col{display:inline-block;height:1.25em;overflow:hidden;line-height:1.25em}
-.odo .col span{display:block;transition:transform .55s var(--ease)}
-.title{font-size:clamp(44px,5.6vw,84px);font-weight:650;letter-spacing:-.045em;line-height:.98;overflow:hidden;padding-bottom:.08em;white-space:nowrap}
-.title .ch{display:inline-block;will-change:transform}
-.desc{font-size:17px;line-height:1.45;color:var(--mute);max-width:34ch;min-height:2.9em}
-.meta{display:flex;gap:8px;flex-wrap:wrap}
-.tag{font-size:12px;color:var(--mute);border:1px solid var(--line);border-radius:6px;padding:3px 8px;font-family:var(--mono)}
-.nav{display:flex;gap:8px;align-items:center;margin-top:6px}
-.arrow{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:border-color .2s,transform .15s}
-.arrow:hover{border-color:color-mix(in srgb,var(--ink) 35%,transparent)}
-.arrow:active{transform:scale(.92)}
-.arrow svg{width:18px;height:18px}
-.all{margin-left:6px}
-.hint{font-size:12px;color:var(--faint);font-family:var(--mono);margin-left:auto}
+/* position ruler, scrubbable */
+.ruler{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:45;display:flex;align-items:flex-end;height:30px;padding:0 6px;touch-action:none;cursor:ew-resize}
+.ruler i{display:block;width:9px;height:100%;position:relative}
+.ruler i::after{content:"";position:absolute;left:4px;bottom:0;width:1.5px;border-radius:1px;background:var(--ink);height:var(--h,5px);opacity:var(--o,.25)}
 
-/* stage */
-.stage{position:relative;height:min(calc(100vh - 68px - 150px),860px,calc((100vw - 56px - 260px - clamp(32px,6vw,96px)) * 1.25));aspect-ratio:4/5;touch-action:pan-y;user-select:none;-webkit-user-select:none}
-.screen{position:absolute;inset:0;border-radius:16px;overflow:hidden;background:var(--panel);clip-path:inset(0 0 0 0 round 16px);will-change:clip-path}
-.screen video,.screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.thread{position:absolute;left:0;right:0;top:50%;height:2px;margin-top:-1px;background:var(--accent);border-radius:2px;opacity:0;pointer-events:none;transform-origin:50% 50%}
-.progress{position:absolute;left:16px;right:16px;bottom:-14px;height:2px;background:var(--line);border-radius:2px;overflow:hidden}
-.progress i{position:absolute;inset:0;background:var(--ink);transform-origin:0 50%;transform:scaleX(0)}
-.paused-badge{position:absolute;top:14px;right:14px;font:12px var(--mono);padding:5px 9px;border-radius:7px;background:rgba(0,0,0,.55);color:#fff;opacity:0;transition:opacity .2s;pointer-events:none;backdrop-filter:blur(8px)}
-.is-paused .paused-badge{opacity:1}
-
-/* reel */
-.reel-wrap{position:relative;padding:22px 0 22px}
-.reel{display:flex;gap:6px;align-items:flex-end;justify-content:safe center;overflow-x:auto;scrollbar-width:none;padding:28px 40px 4px;mask-image:linear-gradient(90deg,transparent,#000 40px,#000 calc(100% - 40px),transparent)}
-.reel::-webkit-scrollbar{display:none}
-.thumb{flex:none;width:44px;height:55px;border-radius:7px;overflow:hidden;position:relative;opacity:.55;transition:opacity .25s;background:var(--panel)}
-.thumb img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
-.thumb:hover,.thumb.on{opacity:1}
-.thumb::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px var(--line)}
-.thumb.on::after{box-shadow:inset 0 0 0 2px var(--accent)}
-.thumb .lbl{position:absolute;left:50%;bottom:calc(100% + 8px);transform:translate(-50%,4px);font-size:11px;white-space:nowrap;opacity:0;transition:opacity .15s,transform .15s;pointer-events:none}
-
-/* tooltip floats above reel */
-.tip{position:fixed;font-size:12px;font-weight:550;padding:4px 8px;border-radius:6px;background:var(--ink);color:var(--bg);pointer-events:none;opacity:0;transform:translate(-50%,4px);transition:opacity .12s,transform .12s;white-space:nowrap;z-index:5}
-.tip.show{opacity:1;transform:translate(-50%,0)}
-
-.foot{position:absolute;left:0;right:0;bottom:6px;text-align:center;font:11px var(--mono);color:var(--faint)}
-
-/* index overlay */
-.index{position:fixed;inset:0;background:var(--bg);z-index:10;overflow:auto;padding:0 28px 60px;visibility:hidden;opacity:0;transition:opacity .25s,visibility 0s .25s}
-.index.open{visibility:visible;opacity:1;transition:opacity .2s}
-.index-top{position:sticky;top:0;display:flex;align-items:center;gap:10px;height:68px;background:var(--bg);z-index:2;flex-wrap:wrap}
-.index-top h2{font-size:17px;font-weight:650;letter-spacing:-.02em;margin-right:14px}
-.filters{display:flex;gap:6px;flex-wrap:wrap}
-.filter{height:30px;padding:0 12px;border-radius:15px;border:1px solid var(--line);font-size:13px;color:var(--mute);transition:all .2s}
-.filter.on{background:var(--ink);color:var(--bg);border-color:transparent}
-.filter sup{font:10px var(--mono);margin-left:3px;opacity:.7;vertical-align:1px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:22px 14px;margin-top:8px}
-.card{text-align:left;display:flex;flex-direction:column;gap:8px}
-.card .pic{aspect-ratio:4/5;border-radius:12px;overflow:hidden;position:relative;background:var(--panel)}
-.card .pic::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px var(--line);transition:box-shadow .2s}
-.card:hover .pic::after{box-shadow:inset 0 0 0 2px var(--accent)}
-.card img,.card video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
-.card:hover img{transform:scale(1.03)}
-.card b{font-size:15px;font-weight:600;letter-spacing:-.01em}
-.card span{font-size:13px;color:var(--mute);line-height:1.35}
-.card.hide{display:none}
-
-/* contact popover */
-.contact{position:fixed;z-index:20;width:300px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:8px;box-shadow:0 24px 60px rgba(0,0,0,.35);visibility:hidden}
-.contact.open{visibility:visible}
-.contact p{font-size:13px;color:var(--mute);padding:10px 10px 12px;line-height:1.4}
-.contact p b{color:var(--ink);font-weight:600}
-.row{display:flex;align-items:center;gap:10px;width:100%;padding:11px 10px;border-radius:10px;font-size:14px;transition:background-color .15s}
-.row:hover{background:color-mix(in srgb,var(--ink) 7%,transparent)}
-.row .k{color:var(--mute);width:62px}
-.row .v{flex:1;text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.row .go{font:12px var(--mono);color:var(--mute);height:1.25em;overflow:hidden;line-height:1.25em;text-align:right}
-.row .go span{display:block;transition:transform .35s var(--ease)}
-.row.done .go span{transform:translateY(-100%)}
-.row.done .go{color:var(--green)}
-.scrim{position:fixed;inset:0;z-index:15;display:none}
-.scrim.on{display:block}
-
-/* mobile */
-@media (max-width:820px){
-  body{overflow:auto}
-  .app{display:block;padding:0 16px;height:auto}
-  .top{height:60px;gap:10px}
-  .role,.sound-lbl,.hint{display:none}
-  .chip{padding:0 12px}
-  .main{display:flex;flex-direction:column-reverse;gap:26px;padding-top:4px}
-  .stage{height:auto;width:min(100%,calc((100svh - 260px)*.8));min-width:min(100%,300px)}
-  .info{width:100%;gap:12px}
-  .title{font-size:44px}
-  .desc{font-size:16px;min-height:0}
-  .reel-wrap{padding:14px 0 40px;margin:0 -16px}
-  .reel{justify-content:flex-start;padding:28px 16px 4px;scroll-snap-type:x proximity;mask-image:none}
-  .thumb{width:48px;height:60px;scroll-snap-align:center}
-  .index{padding:0 16px 40px}
-  .grid{grid-template-columns:repeat(2,1fr);gap:18px 10px}
-  .contact{left:16px!important;right:16px;width:auto;top:auto!important;bottom:16px}
-}
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation:none!important;transition:none!important}
+@media (max-width:700px){
+  .bar{padding:16px}
+  .who b,.reach .links{font-size:16px}
+  .who span,.reach>span{font-size:13px}
+  .reach .links{gap:14px}
+  .frame{border-radius:16px}
+  .label span{font-size:14px}
+  .label img{width:20px;height:20px;border-radius:5px}
+  .ruler{bottom:max(22px,env(safe-area-inset-bottom))}
+  .ruler i{width:8px}
+  .ruler i::after{left:3.25px}
+  .detail p{font-size:16px}
 }
 </style>
 </head>
 <body>
-<div class="app">
-  <header class="top">
-    <a class="mark" href="#" id="home">sekenov</a>
-    <span class="role">product designer who codes</span>
-    <span class="spacer"></span>
-    <button class="chip" id="sound" aria-pressed="false" title="sound (m)" aria-label="sound"><svg class="spk" width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M2.5 6h2.2L8 3.3v9.4L4.7 10H2.5z" fill="currentColor"/><path class="x" d="m11 6.2 3.4 3.6m0-3.6L11 9.8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span class="eq"><i></i><i></i><i></i></span><span class="sound-lbl">sound</span></button>
-    <button class="chip" id="theme" title="theme (t)" aria-label="switch theme">
-      <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.25" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"/></svg>
-    </button>
-    <button class="chip talk" id="talk"><i class="dot"></i>dms open</button>
-  </header>
 
-  <main class="main">
-    <section class="info">
-      <div class="count"><span class="odo" id="odo"></span><span>/ <span id="total"></span></span></div>
-      <h1 class="title" id="title"></h1>
-      <p class="desc" id="desc"></p>
-      <div class="meta" id="meta"></div>
-      <div class="nav">
-        <button class="arrow" id="prev" aria-label="previous"><svg viewBox="0 0 18 18" fill="none"><path d="M11 3.5 5.5 9l5.5 5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <button class="arrow" id="next" aria-label="next"><svg viewBox="0 0 18 18" fill="none"><path d="M7 3.5 12.5 9 7 14.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <button class="chip all" id="openIndex">all <span id="allCount"></span></button>
-        <span class="hint">← → to switch</span>
-      </div>
-    </section>
-
-    <figure class="stage" id="stage">
-      <div class="screen" id="screen">
-        <video id="vid" muted playsinline autoplay loop preload="auto"></video>
-      </div>
-      <div class="thread" id="thread"></div>
-      <div class="paused-badge">paused</div>
-      <div class="progress"><i id="prog"></i></div>
-    </figure>
-  </main>
-
-  <div class="reel-wrap">
-    <nav class="reel" id="reel" aria-label="pieces"></nav>
-    <div class="foot" id="foot"></div>
+<header class="bar">
+  <div class="who"><b>Dias Sekenov</b><span>Product designer who codes</span></div>
+  <div class="reach">
+    <div class="links" id="links"></div>
+    <span>Open for projects</span>
   </div>
+</header>
+
+<main class="sw" id="sw" aria-label="pieces"></main>
+
+<div class="detail" id="detail" aria-live="polite">
+  <p id="desc"></p>
+  <div class="row"><span id="loop"></span><button id="sound">Sound on</button></div>
 </div>
 
-<div class="tip" id="tip"></div>
-
-<section class="index" id="index" aria-label="all pieces">
-  <div class="index-top">
-    <h2>all pieces</h2>
-    <div class="filters" id="filters"></div>
-    <span class="spacer"></span>
-    <button class="chip" id="closeIndex">close</button>
-  </div>
-  <div class="grid" id="grid"></div>
-</section>
-
-<div class="scrim" id="scrim"></div>
-<div class="contact" id="contact" role="dialog" aria-label="contact">
-  <p>open for <b>projects</b>: product design, interactions, motion in code. say hi anywhere</p>
-  <div id="rows"></div>
-</div>
+<nav class="ruler" id="ruler" aria-label="position"></nav>
 
 <script>
-// edit these
-const ME = {
-  x: 'sekenoov',           // x.com handle
-  threads: 'sekenov.ai',   // threads handle
-  email: 'sekenoov@gmail.com'
-};
+const ME = { x:'sekenoov', threads:'sekenov.ai', email:'sekenoov@gmail.com' };
 
+// folder, name, one line, where the poster frame sits (fraction of the loop)
 const P = [
-  ['online','online','messages circle the green dot like moths around a porch light',['texting','work']],
-  ['mute','good','a whole weekend story told on mute piles up in the call tile',['work']],
-  ['watching','still watching','continue watching pulls the cursor away from back like a magnet',['tv']],
-  ['brunch','thank god','friends cancel brunch one by one and drop out of the group header',['texting']],
-  ['pick','you pick','lunch indecision as a ping-pong rally until the replies shrink to “u”',['texting']],
-  ['anyway','anyway','do not disturb bounces the boss, then “quick question” breaks it',['work','phone']],
-  ['hbd','hbd','every word you deleted piles up on the keyboard',['texting']],
-  ['fold','fold','each “are you sure?” folds the answer like a note',['ai']],
-  ['refresh','refresh','pull to refresh and “unfortunately,” drops in like every other email',['email']],
-  ['nvm','nvm','a 7:48 voice note unrolls across the screen like tape',['texting']],
-  ['hey','hey','a 2 am “hey” pulls the whole lock screen in',['texting','phone']],
-  ['unsend','unsend','five rubber bands hold the sent message, your finger is late to undo',['texting']],
-  ['source','source','the link in the answer is a 404 and the answer falls apart plank by plank',['ai']],
-  ['typing','typing','the typing bubble inflates like a balloon on “are you mad at me?”',['texting']],
-  ['monday','later','monday as a macos update you can’t postpone',['work']],
-  ['sunday','charged','the phone charges all weekend, monday eats it by 9 am',['phone']],
-  ['alarms','no alarms','swipe the alarms away, one of them never turns off',['phone']],
-  ['shake','shake','shake the phone and the em dashes fall out of the answer',['ai','phone']],
-  ['friday','weekend','at 5:00 pm a weekend block pushes the weekdays aside',['work']],
-  ['brake','brake','stop a streaming answer and the words crash by inertia',['ai']],
-  ['cooldown','cooldown','hold send and an angry email cools down into corporate',['email']],
-  ['almost','almost','the answer spins like a slot reel between no and yes',['ai']],
-  ['rabbit','rabbit hole','one word of the answer becomes the next question, forever',['ai']],
-  ['develop','develop','an image develops out of noise, word by word of the prompt',['ai']],
-  ['pinch','pinch','pinch an ai answer from 112 words down to 9',['ai']],
-  ['compact','compact','the chat compresses and the facts fly into a summary',['ai']],
-].map(([id,name,desc,tags])=>({id,name,desc,tags}));
+  ['online','online','messages circle the green dot like moths around a porch light',0.6],
+  ['mute','good','a whole weekend story told on mute piles up in the call tile',0.2],
+  ['watching','still watching','continue watching pulls the cursor away from back like a magnet',0.9],
+  ['brunch','thank god','friends cancel brunch one by one and drop out of the group header',0.8],
+  ['pick','you pick','lunch indecision as a ping-pong rally until the replies shrink to “u”',0.3],
+  ['anyway','anyway','do not disturb bounces the boss, then “quick question” breaks it',0.4],
+  ['hbd','hbd','every word you deleted piles up on the keyboard',0.5],
+  ['fold','fold','each “are you sure?” folds the answer like a note',0.9],
+  ['refresh','refresh','pull to refresh and “unfortunately,” drops in like every other email',0.3],
+  ['nvm','nvm','a 7:48 voice note unrolls across the screen like tape',0.3],
+  ['hey','hey','a 2 am “hey” pulls the whole lock screen in',0.8],
+  ['unsend','unsend','five rubber bands hold the sent message, your finger is late to undo',0.3],
+  ['source','source','the link in the answer is a 404 and the answer falls apart plank by plank',0.6],
+  ['typing','typing','the typing bubble inflates like a balloon on “are you mad at me?”',0.8],
+  ['monday','later','monday as a macos update you can’t postpone',0.3],
+  ['sunday','charged','the phone charges all weekend, monday eats it by 9 am',0.8],
+  ['alarms','no alarms','swipe the alarms away, one of them never turns off',0.9],
+  ['shake','shake','shake the phone and the em dashes fall out of the answer',0.2],
+  ['friday','weekend','at 5:00 pm a weekend block pushes the weekdays aside',0.7],
+  ['brake','brake','stop a streaming answer and the words crash by inertia',0.9],
+  ['cooldown','cooldown','hold send and an angry email cools down into corporate',0.5],
+  ['almost','almost','the answer spins like a slot reel between no and yes',0.3],
+  ['rabbit','rabbit hole','one word of the answer becomes the next question, forever',0.6],
+  ['develop','develop','an image develops out of noise, word by word of the prompt',0.4],
+  ['pinch','pinch','pinch an ai answer from 112 words down to 9',0.8],
+  ['compact','compact','the chat compresses and the facts fly into a summary',0.2],
+].map(([id,name,desc,at])=>({id,name,desc,at}));
+const N = P.length;
 
 const $ = s => document.querySelector(s);
-const store = {
-  get(k){ try{ return localStorage.getItem(k) }catch(e){ return null } },
-  set(k,v){ try{ localStorage.setItem(k,v) }catch(e){} }
-};
+const clamp = (v,a,b) => Math.min(b,Math.max(a,v));
+const lerp = (a,b,t) => a+(b-a)*t;
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const dark = matchMedia('(prefers-color-scheme: dark)');
+const theme = () => dark.matches ? 'dark' : 'light';
 const src = (p,kind) => `media/${p.id}-${theme()}${kind}`;
 
-/* ---------- theme ---------- */
-const sysDark = matchMedia('(prefers-color-scheme: dark)');
-function theme(){ return document.documentElement.dataset.theme || (sysDark.matches ? 'dark' : 'light') }
-function setTheme(t){
-  document.documentElement.dataset.theme = t;
-  document.querySelector('meta[name=theme-color]').content = t==='dark' ? '#0d100f' : '#ecebe4';
-}
-setTheme(store.get('theme') || (sysDark.matches ? 'dark' : 'light'));
-
-/* ---------- elements ---------- */
-const vid = $('#vid'), screen = $('#screen'), thread = $('#thread'), stage = $('#stage');
-const titleEl = $('#title'), descEl = $('#desc'), metaEl = $('#meta'), reel = $('#reel');
-$('#total').textContent = String(P.length).padStart(2,'0');
-$('#allCount').textContent = P.length;
-
-/* ---------- odometer ---------- */
-const odo = $('#odo');
-const cols = [0,1].map(()=>{
-  const c = document.createElement('span'); c.className='col';
-  const inner = document.createElement('span');
-  inner.innerHTML = [...'0123456789'].map(d=>`<span>${d}</span>`).join('');
-  inner.style.display='block'; c.appendChild(inner); odo.appendChild(c); return inner;
-});
-function setOdo(n){
-  const s = String(n).padStart(2,'0');
-  // right to left, like a counter turning over
-  [...s].forEach((d,i)=>{
-    const inner = cols[i];
-    inner.style.transition = `transform .55s var(--ease) ${(1-i)*70}ms`;
-    inner.style.transform = `translateY(${-d*1.25}em)`;
-  });
-}
-
-/* ---------- title roll ---------- */
-function splitTitle(text){
-  titleEl.innerHTML = '';
-  return [...text].map(c=>{
-    const s = document.createElement('span'); s.className='ch';
-    s.textContent = c===' ' ? ' ' : c; titleEl.appendChild(s); return s;
-  });
-}
-function rollTitle(text, dir){
-  const old = [...titleEl.querySelectorAll('.ch')];
-  const out = old.map((s,i)=>s.animate(
-    [{transform:'translateY(0)'},{transform:`translateY(${-dir*105}%)`}],
-    {duration:reduced?0:220,delay:reduced?0:i*14,easing:'cubic-bezier(.6,0,.8,.2)',fill:'forwards'}).finished);
-  return Promise.all(out).then(()=>{
-    const chars = splitTitle(text);
-    chars.forEach((s,i)=>s.animate(
-      [{transform:`translateY(${dir*105}%)`},{transform:'translateY(0)'}],
-      {duration:reduced?0:520,delay:reduced?0:i*22,easing:'cubic-bezier(.2,1.25,.3,1)',fill:'backwards'}));
-  });
-}
-function setInfo(p, dir){
-  descEl.animate([{opacity:1,transform:'none'},{opacity:0,transform:`translateY(${-dir*6}px)`}],{duration:160,fill:'forwards'})
-    .finished.then(()=>{
-      descEl.textContent = p.desc;
-      metaEl.innerHTML = p.tags.map(t=>`<span class="tag">${t}</span>`).join('') + `<span class="tag" id="loopTag">loop</span>`;
-      descEl.animate([{opacity:0,transform:`translateY(${dir*6}px)`},{opacity:1,transform:'none'}],{duration:320,delay:120,easing:'cubic-bezier(.2,.8,.2,1)',fill:'both'});
-      metaEl.animate([{opacity:0},{opacity:1}],{duration:300,delay:200,fill:'both'});
-    });
-}
-
-/* ---------- reel ---------- */
-const thumbs = P.map((p,i)=>{
-  const b = document.createElement('button');
-  b.className='thumb'; b.setAttribute('aria-label',p.name);
-  b.innerHTML = `<img alt="" loading="lazy" decoding="async">`;
-  b.onclick = ()=>go(i);
-  b.onpointerenter = ()=>showTip(b,p.name);
-  b.onpointerleave = hideTip;
-  reel.appendChild(b); return b;
-});
-function paintThumbs(){ thumbs.forEach((b,i)=>b.querySelector('img').src = src(P[i],'-t.jpg')) }
-
-const tip = $('#tip');
-function showTip(el,text){
-  if(!matchMedia('(pointer:fine)').matches) return;
-  tip.textContent = text; tip.classList.add('show'); tip._el = el; placeTip();
-}
-function placeTip(){
-  if(!tip._el) return;
-  const r = tip._el.getBoundingClientRect();
-  tip.style.left = (r.left + r.width/2) + 'px';
-  tip.style.top = (r.top - 30) + 'px';
-}
-function hideTip(){ tip.classList.remove('show'); tip._el = null }
-
-// dock: thumbs near the cursor grow, the rest make room
-let dockX = null; const dockW = thumbs.map(()=>44);
-reel.addEventListener('pointermove',e=>{ if(e.pointerType==='mouse') dockX = e.clientX });
-reel.addEventListener('pointerleave',()=>{ dockX = null });
-function dock(){
-  if(matchMedia('(max-width:820px)').matches) return;
-  thumbs.forEach((b,i)=>{
-    let target = 44;
-    if(dockX!==null){
-      const r = b.getBoundingClientRect();
-      const d = (r.left + r.width/2 - dockX) / 64;
-      target = 44 * (1 + .85*Math.exp(-d*d));
-    }
-    dockW[i] += (target - dockW[i]) * .22;
-    if(Math.abs(target-dockW[i])<.05) dockW[i]=target;
-    b.style.width = dockW[i].toFixed(2)+'px';
-    b.style.height = (dockW[i]*1.25).toFixed(2)+'px';
-  });
-  placeTip();
-}
-
-/* ---------- switching ---------- */
-let cur = -1, busy = false, queued = null;
-function idxFromHash(){
-  const id = location.hash.slice(1);
-  const i = P.findIndex(p=>p.id===id || p.name.replace(/ /g,'-')===id);
-  return i<0 ? 0 : i;
-}
-function preload(url){
-  return new Promise(res=>{ const im = new Image(); im.onload = im.onerror = res; im.src = url; setTimeout(res,500) });
-}
-function loadVideo(p){
-  vid.poster = src(p,'.jpg');
-  vid.src = src(p,'.mp4');
-  vid.muted = !soundOn;
-  const pr = vid.play(); if(pr) pr.catch(()=>{ vid.muted = true; vid.play().catch(()=>{}) });
-}
-
-async function go(i, opts={}){
-  i = (i + P.length) % P.length;
-  if(i===cur && !opts.force) return;
-  if(busy){ queued = i; return; }
-  busy = true;
-  const dir = opts.dir ?? (cur<0 ? 1 : (i>cur ? 1 : -1));
-  const p = P[i], first = cur<0;
-  cur = i;
-  history.replaceState(null,'','#'+p.id);
-  document.title = `${p.name} · sekenov`;
-  thumbs.forEach((b,k)=>b.classList.toggle('on',k===i));
-  centerThumb(i, first);
-  setOdo(i+1);
-  stage.classList.remove('is-paused'); userPaused = false;
-
-  if(first || reduced){
-    splitTitle(p.name); descEl.textContent = p.desc;
-    metaEl.innerHTML = p.tags.map(t=>`<span class="tag">${t}</span>`).join('') + `<span class="tag" id="loopTag">loop</span>`;
-    loadVideo(p);
-    if(first && !reduced) intro();
-    busy = false; return;
+/* ---------- springs: damping ratio + response, the UIKit way ---------- */
+class Spring{
+  constructor(x){ this.x=x; this.v=0; this.t=x; this.z=1; this.r=.4 }
+  to(t,{v=this.v,z=1,r=.4}={}){ this.t=t; this.v=v; this.z=z; this.r=reduced?.08:r }
+  set(x){ this.x=x; this.t=x; this.v=0 }
+  step(dt){
+    const k=(2*Math.PI/this.r)**2, c=4*Math.PI*this.z/this.r;
+    const n=Math.max(1,Math.ceil(dt*240)), h=dt/n;
+    for(let i=0;i<n;i++){ this.v += (-k*(this.x-this.t) - c*this.v)*h; this.x += this.v*h }
+    if(Math.abs(this.x-this.t)<1e-4 && Math.abs(this.v)<1e-3){ this.x=this.t; this.v=0 }
   }
-
-  rollTitle(p.name, dir);
-  setInfo(p, dir);
-  const posterReady = preload(src(p,'.jpg'));
-
-  // 1. the screen squashes into a thread
-  thread.style.opacity = 0;
-  const shut = screen.animate(
-    [{clipPath:'inset(0% 0% 0% 0% round 16px)'},{clipPath:'inset(49.6% 0% 49.6% 0% round 2px)'}],
-    {duration:260,easing:'cubic-bezier(.7,0,.84,0)',fill:'forwards'});
-  thread.animate([{opacity:0},{opacity:0,offset:.6},{opacity:1}],{duration:260,fill:'forwards'});
-  await shut.finished;
-
-  // 2. the thread gets plucked in the direction you went
-  loadVideo(p);
-  await Promise.all([
-    posterReady,
-    thread.animate([
-      {transform:'translateX(0) scaleX(1) scaleY(1)'},
-      {transform:`translateX(${dir*18}px) scaleX(.94) scaleY(2.2)`,offset:.35},
-      {transform:`translateX(${-dir*6}px) scaleX(1.01) scaleY(1)`,offset:.7},
-      {transform:'translateX(0) scaleX(1) scaleY(1)'}
-    ],{duration:300,easing:'ease-out'}).finished
-  ]);
-
-  // 3. the new piece grows out of the same thread
-  thread.animate([{opacity:1},{opacity:0}],{duration:200,fill:'forwards'});
-  const open = screen.animate(
-    [{clipPath:'inset(49.6% 0% 49.6% 0% round 2px)'},{clipPath:'inset(0% 0% 0% 0% round 16px)'}],
-    {duration:520,easing:'cubic-bezier(.16,1,.3,1)',fill:'forwards'});
-  await open.finished;
-  open.commitStyles?.(); open.cancel(); shut.cancel();
-
-  busy = false;
-  if(queued!==null){ const q = queued; queued = null; go(q); }
 }
+// Apple's projection from Designing Fluid Interfaces: where a flick would come to rest
+const project = (v,d=.998) => (v/1000)*d/(1-d);
+// soft edge: the further past the end, the less it follows
+const rubber = (o,dim,c=.55) => (o*dim*c)/(dim+c*Math.abs(o));
 
-function centerThumb(i, instant){
-  const b = thumbs[i];
-  const left = b.offsetLeft - reel.clientWidth/2 + b.offsetWidth/2;
-  reel.scrollTo({left, behavior: instant||reduced ? 'auto' : 'smooth'});
-}
+const pos  = new Spring(0);   // continuous index of the front card
+const open = new Spring(0);   // 0 switcher, 1 card opened
+const lift = new Spring(0);   // vertical pull on the front card, px
 
-function intro(){
-  screen.animate([{clipPath:'inset(49.6% 0% 49.6% 0% round 2px)'},{clipPath:'inset(0% 0% 0% 0% round 16px)'}],
-    {duration:900,delay:250,easing:'cubic-bezier(.16,1,.3,1)',fill:'backwards'});
-  thread.animate([{opacity:0,transform:'scaleX(0)'},{opacity:1,transform:'scaleX(1)',offset:.25},{opacity:1,offset:.3},{opacity:0}],
-    {duration:1000,easing:'cubic-bezier(.2,.8,.2,1)'});
-  titleEl.querySelectorAll('.ch').forEach((s,i)=>s.animate(
-    [{transform:'translateY(105%)'},{transform:'translateY(0)'}],
-    {duration:700,delay:400+i*30,easing:'cubic-bezier(.2,1.25,.3,1)',fill:'backwards'}));
-  [descEl,metaEl,document.querySelector('.nav'),document.querySelector('.count')].forEach((el,i)=>el.animate(
-    [{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'none'}],
-    {duration:600,delay:550+i*90,easing:'cubic-bezier(.2,.8,.2,1)',fill:'backwards'}));
-  thumbs.forEach((b,i)=>b.animate([{opacity:0,transform:'translateY(14px)'},{transform:'none'}],
-    {duration:500,delay:500+i*18,easing:'cubic-bezier(.2,1.2,.3,1)',fill:'backwards'}));
-}
-
-/* ---------- progress + loop length from the real file ---------- */
-const prog = $('#prog');
-vid.addEventListener('loadedmetadata',()=>{
-  const t = document.getElementById('loopTag');
-  if(t && isFinite(vid.duration)) t.textContent = vid.duration.toFixed(1)+' s loop';
+/* ---------- build ---------- */
+const sw = $('#sw'), ruler = $('#ruler');
+const cards = P.map((p,i)=>{
+  const el = document.createElement('div');
+  el.className = 'card'; el.style.zIndex = i; el.dataset.i = i;
+  el.setAttribute('aria-label', p.name);
+  el.innerHTML = `<div class="label"><img alt=""><span>${p.name}</span></div>
+    <div class="frame"><img alt="" decoding="async"><video muted loop playsinline preload="none"></video><div class="shade"></div></div>`;
+  sw.appendChild(el);
+  const c = { el, i, label:el.querySelector('.label'), ico:el.querySelector('.label img'),
+    poster:el.querySelector('.frame img'), video:el.querySelector('video'), shade:el.querySelector('.shade'),
+    shown:true, loaded:false };
+  c.video.addEventListener('playing',()=>c.video.classList.add('live'));
+  c.video.addEventListener('loadedmetadata',()=>{ if(front===i) showLoop() });
+  return c;
 });
-function tick(){
-  if(vid.duration) prog.style.transform = `scaleX(${vid.currentTime/vid.duration})`;
-  dock();
-  requestAnimationFrame(tick);
-}
+const ticks = P.map(p=>{ const t=document.createElement('i'); t.title=p.name; ruler.appendChild(t); return t });
 
-/* ---------- controls ---------- */
-$('#prev').onclick = ()=>go(cur-1,{dir:-1});
-$('#next').onclick = ()=>go(cur+1,{dir:1});
-$('#home').onclick = e=>{ e.preventDefault(); go(0,{dir:-1}) };
-
-let userPaused = false;
-function togglePause(){
-  userPaused = !vid.paused ? true : false;
-  if(userPaused){ vid.pause(); stage.classList.add('is-paused') }
-  else { vid.play().catch(()=>{}); stage.classList.remove('is-paused') }
-}
-// browsers pause muted video in background tabs and power saving; pick it back up
-setInterval(()=>{
-  if(vid.paused && !userPaused && !document.hidden && !$('#index').classList.contains('open')) vid.play().catch(()=>{});
-},1000);
-
-let soundOn = false;
-function setSound(on){
-  soundOn = on; vid.muted = !on;
-  if(on && vid.paused) vid.play().catch(()=>{});
-  $('#sound').classList.toggle('sound-on',on);
-  $('#sound').setAttribute('aria-pressed',on);
-}
-$('#sound').onclick = ()=>setSound(!soundOn);
-
-function switchTheme(e){
-  const next = theme()==='dark' ? 'light' : 'dark';
-  const t = vid.currentTime, playing = !vid.paused;
-  const apply = ()=>{
-    setTheme(next); store.set('theme',next); paintThumbs(); paintGrid();
-    const p = P[cur];
-    vid.poster = src(p,'.jpg'); vid.src = src(p,'.mp4');
-    vid.addEventListener('loadedmetadata',()=>{ vid.currentTime = t; if(playing) vid.play().catch(()=>{}) },{once:true});
-  };
-  if(!document.startViewTransition || reduced) return apply();
-  const r = $('#theme').getBoundingClientRect();
-  const x = r.left + r.width/2, y = r.top + r.height/2;
-  const R = Math.hypot(Math.max(x,innerWidth-x),Math.max(y,innerHeight-y));
-  document.startViewTransition(apply).ready.then(()=>{
-    document.documentElement.animate({clipPath:[`circle(0 at ${x}px ${y}px)`,`circle(${R}px at ${x}px ${y}px)`]},
-      {duration:650,easing:'cubic-bezier(.4,0,.2,1)',pseudoElement:'::view-transition-new(root)'});
+function paint(){
+  cards.forEach((c,i)=>{
+    c.ico.src = src(P[i],'-t.jpg');
+    c.poster.src = src(P[i],'.jpg');
+    if(c.loaded){
+      const t = c.video.currentTime, playing = c.i===front;
+      c.video.classList.remove('live');
+      c.video.src = src(P[i],'.mp4');
+      c.video.addEventListener('loadedmetadata',()=>{ c.video.currentTime=t; if(playing) c.video.play().catch(()=>{}) },{once:true});
+    }
   });
 }
-$('#theme').onclick = switchTheme;
+dark.addEventListener('change', paint);
 
-/* swipe and drag on the stage */
-let sx=null, sy=null, dx=0;
-stage.addEventListener('pointerdown',e=>{ sx=e.clientX; sy=e.clientY; dx=0; stage.setPointerCapture(e.pointerId) });
-stage.addEventListener('pointermove',e=>{
-  if(sx===null||busy) return;
-  dx = e.clientX - sx;
-  if(Math.abs(dx) > Math.abs(e.clientY - sy)) screen.style.transform = `translateX(${dx*.25}px) rotate(${dx*.008}deg)`;
-});
-stage.addEventListener('pointerup',e=>{
-  if(sx===null) return;
-  const moved = Math.abs(dx);
-  screen.animate([{transform:screen.style.transform||'none'},{transform:'none'}],{duration:380,easing:'cubic-bezier(.2,1.4,.3,1)'});
-  screen.style.transform = '';
-  if(moved>50) go(cur + (dx<0?1:-1),{dir:dx<0?1:-1});
-  else if(moved<6) togglePause();
-  sx = null;
-});
-stage.addEventListener('pointercancel',()=>{ sx=null; screen.style.transform='' });
+/* contacts */
+$('#links').innerHTML =
+  `<a href="https://x.com/${ME.x}" target="_blank" rel="noopener">X</a>`+
+  `<a href="https://www.threads.com/@${ME.threads}" target="_blank" rel="noopener">Threads</a>`+
+  `<button id="mail" title="${ME.email}"><span class="swap"><i>Email</i><i>Copied</i></span></button>`;
+$('#mail').onclick = e=>{
+  const b = e.currentTarget;
+  if(!navigator.clipboard){ location.href='mailto:'+ME.email; return }
+  navigator.clipboard.writeText(ME.email).then(()=>{
+    b.classList.add('copied'); clearTimeout(b._t); b._t = setTimeout(()=>b.classList.remove('copied'),1800);
+  }).catch(()=>{ location.href='mailto:'+ME.email });
+};
 
-/* horizontal trackpad swipe */
-let wheelLock = 0;
-stage.addEventListener('wheel',e=>{
-  if(Math.abs(e.deltaX) < Math.abs(e.deltaY) || Math.abs(e.deltaX) < 25) return;
+/* ---------- geometry ---------- */
+let W,H,S,VW,VH,CY,OPEN,OPEN_Y,mobile;
+function layout(){
+  VW = innerWidth; VH = innerHeight; mobile = VW < 700;
+  const top = mobile ? 92 : 96, bottom = mobile ? 74 : 80;
+  W = mobile ? Math.min(VW*.8,(VH-top-bottom-60)*.8) : Math.min(VW*.3,(VH-top-bottom-60)*.8,440);
+  H = W*1.25; S = W*1.06;
+  CY = top + (VH-top-bottom)/2 + 14;
+  // opened card: as large as fits, with room for one line of text under it
+  const room = VH - top - bottom - 96;
+  OPEN = Math.max(1.05, Math.min(room/H, (VW-32)/W, 1.9));
+  OPEN_Y = top + 30 + H*OPEN/2 - CY;
+  cards.forEach(c=>{ c.el.style.width=W+'px'; c.el.style.height=H+'px'; c.el.style.marginLeft=-W/2+'px'; c.el.style.top=(CY-H/2)+'px' });
+  $('#detail').style.top = (CY + OPEN_Y + H*OPEN/2 + 18)+'px';
+}
+addEventListener('resize', layout);
+
+/* ---------- render: everything comes from the three springs ---------- */
+let front = -1;
+const det = $('#detail');
+function render(){
+  const p = pos.x, o = clamp(open.x,0,1.2), oc = clamp(o,0,1), f = clamp(Math.round(p),0,N-1);
+  for(const c of cards){
+    const d = c.i - p;
+    const visible = d > -7 && d < 2.6;
+    if(visible !== c.shown){ c.el.style.visibility = visible ? '' : 'hidden'; c.shown = visible }
+    if(!visible) continue;
+
+    // right of the front card: full spacing, sliding over the top
+    // left of it: piling up underneath, smaller and darker
+    let x, s, dim;
+    if(d >= 0){ x = d*S; s = 1; dim = 0 }
+    else { x = -0.7*W*(1-Math.exp(.55*d)); s = 1 + .045*Math.max(d,-4); dim = Math.min(.55,-d*.2) }
+
+    let y = 0, op = 1;
+    if(c.i === f){
+      x = lerp(x,0,o); s = lerp(s,OPEN,o); y = lerp(0,OPEN_Y,o) + lift.x; dim = lerp(dim,0,oc);
+      if(oc < .01) s *= 1 - Math.min(.05, Math.abs(lift.x)/H*.2);
+    } else {
+      op = 1 - oc; s *= 1 - .06*oc; y = 30*oc;
+    }
+    c.el.style.transform = `translate3d(${x.toFixed(2)}px,${y.toFixed(2)}px,0) scale(${s.toFixed(4)})`;
+    c.el.style.opacity = op;
+    c.shade.style.opacity = dim;
+    // labels of buried cards fade before they collide
+    c.label.style.opacity = d < 0 ? clamp(1 + d*1.25, 0, 1) : 1;
+    c.label.style.transform = `scale(${(1/s).toFixed(4)})`;
+  }
+  ticks.forEach((t,i)=>{
+    const g = Math.exp(-((i-p)**2)/.9);
+    t.style.setProperty('--h', (5 + 13*g).toFixed(2)+'px');
+    t.style.setProperty('--o', (.22 + .78*g).toFixed(3));
+  });
+  det.style.opacity = clamp((o-.4)/.6,0,1);
+  det.style.transform = `translateX(-50%) translateY(${((1-oc)*10).toFixed(2)}px)`;
+  det.style.pointerEvents = o > .9 ? 'auto' : 'none';
+  if(f !== front) setFront(f);
+  if(playing !== front && Math.abs(pos.v) < 2.5 && !g) play(front);
+}
+
+/* ---------- media: only the front card plays ---------- */
+let soundOn = true;
+function showLoop(){ const v = cards[front].video; $('#loop').textContent = isFinite(v.duration) ? v.duration.toFixed(1)+' s loop' : '' }
+let playing = -1;
+function setFront(f){
+  const prev = cards[playing];
+  if(prev && playing !== f){ prev.video.pause(); prev.video.muted = true }
+  playing = -1;
+  front = f;
+  $('#desc').textContent = P[f].desc;
+  showLoop();
+  history.replaceState(null,'','#'+P[f].id);
+  document.title = `${P[f].name} · Dias Sekenov`;
+}
+// the video starts once the deck slows down, not for every card that flies past
+function play(f){
+  const c = cards[f], p = P[f];
+  playing = f;
+  if(!c.loaded){
+    c.loaded = true;
+    c.video.src = src(p,'.mp4');
+    // start where the poster frame was taken, so the switch to video is invisible
+    c.video.addEventListener('loadedmetadata',()=>{ c.video.currentTime = p.at < 1 ? c.video.duration*p.at : p.at },{once:true});
+  }
+  c.video.muted = !(open.t > .5 && soundOn);
+  c.video.play().catch(()=>{});
+}
+// browsers pause muted video in the background or in low power mode; pick it back up
+setInterval(()=>{ const v = cards[playing]?.video; if(v && v.paused && !document.hidden) v.play().catch(()=>{}) },1200);
+
+function setOpen(on, v=0){
+  open.to(on?1:0,{v, z: on ? .86 : 1, r: on ? .42 : .36});
+  if(on && playing !== front) play(front);
+  const vid = cards[front].video;
+  vid.muted = !(on && soundOn);
+  if(on && vid.paused) vid.play().catch(()=>{});
+  $('#sound').textContent = soundOn ? 'Sound on' : 'Sound off';
+}
+function toggleSound(){
+  soundOn = !soundOn;
+  cards[front].video.muted = !(soundOn && open.t > .5);
+  $('#sound').textContent = soundOn ? 'Sound on' : 'Sound off';
+}
+$('#sound').onclick = toggleSound;
+
+function goTo(i,opts={}){ pos.to(clamp(i,0,N-1),{v:pos.v, z:1, r:.42, ...opts}) }
+
+/* ---------- direct manipulation ---------- */
+let g = null;
+function idxOf(el){ const c = el && el.closest && el.closest('.card'); return c ? +c.dataset.i : -1 }
+sw.addEventListener('pointerdown',e=>{
+  if(e.button) return;
+  const hit = idxOf(e.target);
+  sw.setPointerCapture(e.pointerId);
+  g = { x0:e.clientX, y0:e.clientY, p0:pos.x, o0:open.x, axis:null, hit, hist:[[e.clientX,e.clientY,e.timeStamp]] };
+  // catch whatever is moving, exactly where it is on screen
+  pos.set(pos.x); lift.set(lift.x); open.set(open.x);
+  sw.classList.add('dragging');
+});
+sw.addEventListener('pointermove',e=>{
+  if(!g) return;
+  const dx = e.clientX-g.x0, dy = e.clientY-g.y0;
+  g.hist.push([e.clientX,e.clientY,e.timeStamp]);
+  while(g.hist.length>2 && e.timeStamp-g.hist[0][2] > 100) g.hist.shift();
+  if(!g.axis){
+    if(Math.hypot(dx,dy) < 8) return;
+    g.axis = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y';
+    if(g.axis==='x' && g.o0 > .5) g.axis = 'none';
+  }
+  if(g.axis==='x'){
+    const raw = g.p0 - dx/S;
+    pos.set(raw < 0 ? -rubber(-raw,1) : raw > N-1 ? N-1 + rubber(raw-N+1,1) : raw);
+  } else if(g.axis==='y'){
+    if(g.o0 > .5){
+      // opened: pull it down to put it back
+      open.set(clamp(g.o0 - Math.max(0,dy)/(VH*.55), 0, 1));
+      lift.set(dy < 0 ? -rubber(-dy,H,.3) : dy*.35);
+    } else {
+      // in the deck: it follows, then resists
+      lift.set(rubber(dy,H,.5));
+    }
+  }
+});
+function release(e){
+  if(!g) return;
+  sw.classList.remove('dragging');
+  const h = g.hist, a = h[0], b = h[h.length-1], dt = Math.max(16,(b[2]-a[2]))/1000;
+  const vx = (b[0]-a[0])/dt, vy = (b[1]-a[1])/dt;
+  const dy = e.clientY - g.y0;
+
+  if(!g.axis){
+    // a tap
+    if(open.x > .5){ if(g.hit === front) toggleSound(); else setOpen(false) }
+    else if(g.hit === front) setOpen(true);
+    else if(g.hit >= 0) goTo(g.hit);
+  } else if(g.axis==='x'){
+    // the spring takes over at the finger's speed and lands where the flick was heading
+    const target = clamp(Math.round(pos.x + project(-vx)/S), 0, N-1);
+    pos.to(target,{v:-vx/S, z: Math.abs(vx) > 400 ? .86 : 1, r:.45});
+  } else if(g.axis==='y'){
+    if(g.o0 > .5){
+      // direction of the release decides, not only distance
+      const close = vy > 200 || (vy > -200 && dy > 90);
+      lift.to(0,{v:vy, z:.9, r:.4});
+      setOpen(!close, -vy/(VH*.55));
+    } else {
+      lift.to(0,{v:vy, z:.7, r:.42});
+    }
+  } else {
+    lift.to(0);
+  }
+  g = null;
+}
+sw.addEventListener('pointerup',release);
+sw.addEventListener('pointercancel',release);
+
+/* trackpad and wheel move the deck directly, then it settles in the direction of travel */
+let wheelRaw = null, wheelT = 0, wheelV = 0, wheelLast = 0;
+sw.addEventListener('wheel',e=>{
   e.preventDefault();
-  const now = performance.now(); if(now < wheelLock) return;
-  wheelLock = now + 700;
-  go(cur + (e.deltaX>0?1:-1),{dir:e.deltaX>0?1:-1});
+  if(open.t > .5){ if(Math.abs(e.deltaY) > 20) setOpen(false); return }
+  let d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+  if(e.deltaMode === 1) d *= 18;
+  if(wheelRaw === null) wheelRaw = pos.x;
+  wheelRaw = clamp(wheelRaw + d/S, -1, N);
+  pos.set(wheelRaw < 0 ? -rubber(-wheelRaw,1) : wheelRaw > N-1 ? N-1 + rubber(wheelRaw-N+1,1) : wheelRaw);
+  const now = e.timeStamp, dt = Math.max(8, now-wheelLast)/1000;
+  wheelV = .7*wheelV + .3*(d/S)/dt; wheelLast = now;
+  clearTimeout(wheelT);
+  wheelT = setTimeout(()=>{
+    const t = wheelV > 0 ? Math.ceil(pos.x - .15) : Math.floor(pos.x + .15);
+    pos.to(clamp(t,0,N-1),{v:0, z:1, r:.4});
+    wheelRaw = null; wheelV = 0;
+  },110);
 },{passive:false});
+
+/* ruler: scrub through everything */
+let scrub = false;
+function scrubTo(e){
+  const r = ruler.getBoundingClientRect();
+  const i = clamp(Math.floor((e.clientX - r.left - 6)/((r.width-12)/N)), 0, N-1);
+  pos.to(i,{v:pos.v, z:1, r:.28});
+}
+ruler.addEventListener('pointerdown',e=>{ scrub = true; ruler.setPointerCapture(e.pointerId); if(open.t>.5) setOpen(false); scrubTo(e) });
+ruler.addEventListener('pointermove',e=>{ if(scrub) scrubTo(e) });
+ruler.addEventListener('pointerup',()=>{ scrub = false });
 
 addEventListener('keydown',e=>{
   if(e.metaKey||e.ctrlKey||e.altKey) return;
   const k = e.key;
-  if(k==='Escape'){ closeIndex(); closeContact(); return; }
-  if($('#index').classList.contains('open')) return;
-  if(k==='ArrowRight'||k==='j'){ go(cur+1,{dir:1}); }
-  else if(k==='ArrowLeft'||k==='k'){ go(cur-1,{dir:-1}); }
-  else if(k===' '){ e.preventDefault(); togglePause(); }
-  else if(k==='m'){ setSound(!soundOn); }
-  else if(k==='t'){ switchTheme(); }
-  else if(k==='g'){ openIndex(); }
+  if(k==='ArrowRight'){ if(open.t>.5) setOpen(false); goTo(Math.round(pos.t)+1) }
+  else if(k==='ArrowLeft'){ if(open.t>.5) setOpen(false); goTo(Math.round(pos.t)-1) }
+  else if(k==='Enter'||k===' '){ e.preventDefault(); setOpen(open.t < .5) }
+  else if(k==='Escape'){ setOpen(false) }
+  else if(k==='Home'){ goTo(0) }
+  else if(k==='End'){ goTo(N-1) }
 });
-addEventListener('hashchange',()=>{ const i = idxFromHash(); if(i!==cur) go(i) });
+addEventListener('hashchange',()=>{ const i = P.findIndex(p=>'#'+p.id===location.hash); if(i>=0 && i!==Math.round(pos.t)) goTo(i) });
 
-/* ---------- index overlay ---------- */
-const grid = $('#grid'), filtersEl = $('#filters');
-const cards = P.map((p,i)=>{
-  const b = document.createElement('button'); b.className='card';
-  b.innerHTML = `<div class="pic"><img alt="" loading="lazy" decoding="async"></div><b>${p.name}</b><span>${p.desc}</span>`;
-  b.onclick = ()=>{ closeIndex(); go(i); };
-  // a short preview plays only while the pointer rests on the card
-  let v=null, timer=null;
-  b.onpointerenter = e=>{
-    if(e.pointerType!=='mouse') return;
-    timer = setTimeout(()=>{
-      v = document.createElement('video'); v.muted=true; v.loop=true; v.playsInline=true; v.src=src(p,'.mp4');
-      v.style.opacity=0; b.querySelector('.pic').appendChild(v);
-      v.play().then(()=>v.animate([{opacity:0},{opacity:1}],{duration:200,fill:'forwards'})).catch(()=>{});
-    },180);
-  };
-  b.onpointerleave = ()=>{ clearTimeout(timer); if(v){ v.remove(); v=null } };
-  grid.appendChild(b); return b;
-});
-function paintGrid(){ cards.forEach((c,i)=>c.querySelector('img').src = src(P[i],'-t.jpg')) }
-
-const tagCount = {};
-P.forEach(p=>p.tags.forEach(t=>tagCount[t]=(tagCount[t]||0)+1));
-const tags = ['everything',...Object.keys(tagCount).sort((a,b)=>tagCount[b]-tagCount[a])];
-let filter = 'everything';
-tags.forEach(t=>{
-  const b = document.createElement('button'); b.className='filter'+(t===filter?' on':'');
-  b.innerHTML = `${t}<sup>${t==='everything'?P.length:tagCount[t]}</sup>`;
-  b.onclick = ()=>{
-    filter = t;
-    filtersEl.querySelectorAll('.filter').forEach(f=>f.classList.toggle('on',f===b));
-    let n=0;
-    cards.forEach((c,i)=>{
-      const show = t==='everything' || P[i].tags.includes(t);
-      c.classList.toggle('hide',!show);
-      if(show && !reduced) c.animate([{opacity:0,transform:'translateY(10px) scale(.98)'},{opacity:1,transform:'none'}],
-        {duration:420,delay:(n++)*28,easing:'cubic-bezier(.2,1,.3,1)',fill:'backwards'});
-    });
-  };
-  filtersEl.appendChild(b);
-});
-
-function openIndex(){
-  const ix = $('#index'); ix.classList.add('open'); ix.scrollTop = 0;
-  if(!reduced) cards.filter(c=>!c.classList.contains('hide')).forEach((c,n)=>c.animate(
-    [{opacity:0,transform:'translateY(18px)'},{opacity:1,transform:'none'}],
-    {duration:520,delay:60+n*24,easing:'cubic-bezier(.2,1,.3,1)',fill:'backwards'}));
-  vid.pause();
+/* ---------- loop ---------- */
+let last = performance.now();
+function frame(now){
+  const dt = Math.min(1/30,(now-last)/1000); last = now;
+  pos.step(dt); open.step(dt); lift.step(dt);
+  render();
+  requestAnimationFrame(frame);
 }
-function closeIndex(){
-  const ix = $('#index'); if(!ix.classList.contains('open')) return;
-  ix.classList.remove('open');
-  if(!userPaused) vid.play().catch(()=>{});
-}
-$('#openIndex').onclick = openIndex;
-$('#closeIndex').onclick = closeIndex;
 
-/* ---------- contact: the green dot opens up into the card ---------- */
-const contact = $('#contact'), scrim = $('#scrim');
-const rows = [
-  ME.x && {k:'x', v:'@'+ME.x, href:'https://x.com/'+ME.x, go:['dm','↗']},
-  ME.threads && {k:'threads', v:'@'+ME.threads, href:'https://www.threads.com/@'+ME.threads, go:['dm','↗']},
-  ME.email && {k:'email', v:ME.email, copy:ME.email, go:['copy','copied']},
-].filter(Boolean);
-$('#rows').innerHTML = rows.map((r,i)=>r.href
-  ? `<a class="row" href="${r.href}" target="_blank" rel="noopener"><span class="k">${r.k}</span><span class="v">${r.v}</span><span class="go"><span>${r.go[0]}</span></span></a>`
-  : `<button class="row" data-copy="${r.copy}"><span class="k">${r.k}</span><span class="v">${r.v}</span><span class="go"><span>${r.go[0]}</span><span>${r.go[1]}</span></span></button>`).join('');
-contact.querySelectorAll('[data-copy]').forEach(b=>b.onclick = ()=>{
-  const done = ()=>{ b.classList.add('done'); setTimeout(()=>b.classList.remove('done'),1600) };
-  (navigator.clipboard?.writeText(b.dataset.copy) || Promise.reject()).then(done).catch(()=>{ location.href='mailto:'+b.dataset.copy });
-});
-
-function openContact(){
-  const btn = $('#talk'), dot = btn.querySelector('.dot');
-  const r = btn.getBoundingClientRect();
-  contact.style.top = (r.bottom + 10) + 'px';
-  contact.style.left = Math.max(16, r.right - 300) + 'px';
-  contact.classList.add('open'); scrim.classList.add('on');
-  const c = contact.getBoundingClientRect(), d = dot.getBoundingClientRect();
-  const x = d.left + d.width/2 - c.left, y = d.top + d.height/2 - c.top;
-  const R = Math.hypot(Math.max(x,c.width-x),Math.max(y,c.height-y));
-  if(reduced) return;
-  contact.animate({clipPath:[`circle(4px at ${x}px ${y}px)`,`circle(${R}px at ${x}px ${y}px)`]},
-    {duration:480,easing:'cubic-bezier(.2,.9,.2,1)'});
-  contact.querySelectorAll('p,.row').forEach((el,i)=>el.animate(
-    [{opacity:0,transform:'translateY(6px)'},{opacity:1,transform:'none'}],
-    {duration:360,delay:120+i*50,easing:'cubic-bezier(.2,.8,.2,1)',fill:'backwards'}));
-}
-function closeContact(){
-  if(!contact.classList.contains('open')) return;
-  scrim.classList.remove('on');
-  if(reduced){ contact.classList.remove('open'); return; }
-  contact.animate([{opacity:1,transform:'none'},{opacity:0,transform:'translateY(-4px) scale(.98)'}],{duration:160})
-    .finished.then(()=>contact.classList.remove('open'));
-}
-$('#talk').onclick = ()=> contact.classList.contains('open') ? closeContact() : openContact();
-scrim.onclick = closeContact;
-
-/* ---------- start ---------- */
-$('#foot').textContent = `${P.length} pieces · every frame is code, recorded straight from the browser`;
-paintThumbs(); paintGrid();
-go(idxFromHash());
-requestAnimationFrame(tick);
+/* ---------- start: the deck slides in from the right ---------- */
+const start = Math.max(0, P.findIndex(p=>'#'+p.id===location.hash));
+layout(); paint();
+if(reduced) pos.set(start); else { pos.set(start-2.4); pos.to(start,{z:1,r:.9}) }
+requestAnimationFrame(frame);
 </script>
 </body>
 </html>
