@@ -3,457 +3,462 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Dias Sekenov</title>
-<meta name="description" content="Dias Sekenov, product designer who codes. Small interface moments, built by hand.">
-<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
-<meta name="theme-color" content="#dcdce0" media="(prefers-color-scheme: light)">
-<meta property="og:title" content="Dias Sekenov">
-<meta property="og:description" content="product designer who codes. small interface moments, built by hand">
+<title>Dias Sekenov · Product designer</title>
+<meta name="description" content="Dias Sekenov is a product designer who codes the small moments in interfaces.">
+<meta name="theme-color" content="#fbfaf8">
+<meta property="og:title" content="Dias Sekenov · Product designer">
+<meta property="og:description" content="I design and code the small moments in interfaces that people actually feel.">
 <meta property="og:image" content="https://sekenoov.github.io/og.jpg">
 <meta property="og:url" content="https://sekenoov.github.io/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@sekenoov">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='6' width='14' height='20' rx='3.5' fill='%238e8e93'/%3E%3Crect x='12' y='4' width='17' height='24' rx='4' fill='%23000'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232a2622'/%3E%3Ctext x='16' y='22.5' font-family='Georgia,serif' font-size='18' text-anchor='middle' fill='%23fbfaf8'%3Ed%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#dcdce0; --ink:#1c1c1e; --mute:#6e6e73; --hair:rgba(0,0,0,.1); --link:#007aff;
-  --card-shadow:0 1px 2px rgba(0,0,0,.08),0 12px 40px rgba(0,0,0,.16);
-  color-scheme:light;
-}
-@media (prefers-color-scheme:dark){
-  :root{
-    --bg:#000; --ink:#f2f2f7; --mute:#8e8e93; --hair:rgba(255,255,255,.1); --link:#0a84ff;
-    --card-shadow:0 0 0 .5px rgba(255,255,255,.12),0 12px 40px rgba(0,0,0,.6);
-    color-scheme:dark;
-  }
+  --bg:#fbfaf8; --ink:#2a2622; --soft:#5d5650; --mute:#958d84; --line:#ebe6df; --tile:#f1eee9;
+  --foot:#26231f; --foot-ink:#ece6dd; --foot-mute:#9a9187;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Helvetica Neue",system-ui,sans-serif;
+  --ease:cubic-bezier(.2,.8,.2,1);
+  --wrap:min(1200px,calc(100vw - 64px));
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
-body{
-  background:var(--bg);color:var(--ink);overflow:hidden;
-  font:15px/1.4 -apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",system-ui,sans-serif;
-  -webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
-  overscroll-behavior:none;
-}
-button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+img,video{display:block}
+.wrap{width:var(--wrap);margin:0 auto}
+.cap{font:500 12px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
 
-/* header: name on the left, how to reach out on the right */
-.bar{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:flex-start;padding:22px 28px;pointer-events:none}
-.bar>*{pointer-events:auto}
-.who b{display:block;font-size:17px;font-weight:600;letter-spacing:-.022em}
-.who span{color:var(--mute);font-size:15px;letter-spacing:-.01em}
-.reach{text-align:right}
-.reach .links{display:flex;gap:18px;justify-content:flex-end;font-size:17px;letter-spacing:-.022em}
-.reach .links a,.reach .links button{color:var(--link);transition:opacity .1s}
-.reach .links a:active,.reach .links button:active{opacity:.45}
-.reach>span{color:var(--mute);font-size:15px;letter-spacing:-.01em}
-.swap{display:inline-grid;height:1.4em;overflow:hidden;vertical-align:top;text-align:right}
-.swap i{font-style:normal;grid-area:1/1;transition:transform .45s cubic-bezier(.2,.9,.3,1),opacity .3s}
-.swap i:last-child{transform:translateY(100%);opacity:0}
+/* nav */
+.nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{font:500 19px/1 var(--serif);letter-spacing:-.01em}
+.links{display:flex;gap:34px}
+.links a{font-size:14px;color:var(--soft);position:relative;padding:6px 0;transition:color .2s}
+.links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .35s var(--ease)}
+.links a:hover{color:var(--ink)}
+.links a:hover::after{transform:scaleX(1);transform-origin:left}
+
+/* hero */
+.hero{padding:96px 0 84px;text-align:center}
+.hero h1{font:400 clamp(40px,5.4vw,68px)/1.06 var(--serif);letter-spacing:-.02em;max-width:15em;margin:0 auto}
+.hero h1 em{font-style:italic}
+.hero p{margin:26px auto 0;max-width:36em;color:var(--soft);font-size:17px}
+.hero .status{display:inline-flex;align-items:center;gap:10px;margin-top:30px;font-size:14px;color:var(--soft)}
+.hero .status i{width:7px;height:7px;border-radius:50%;background:#3aa45c}
+.hero .status a{color:var(--ink);border-bottom:1px solid var(--line);transition:border-color .2s}
+.hero .status a:hover{border-color:var(--ink)}
+
+/* section heads */
+.head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;margin:0 auto 28px}
+.head h2{font:400 32px/1.1 var(--serif);letter-spacing:-.015em}
+
+/* featured */
+.featured{display:grid;gap:72px;margin-bottom:120px}
+.feat{display:block;cursor:pointer}
+.feat .stage{position:relative;aspect-ratio:2.05/1;border-radius:22px;overflow:hidden;background:var(--c);display:flex;align-items:center;justify-content:center;gap:4%}
+.feat .ph{position:relative;height:84%;aspect-ratio:4/5;border-radius:14px;overflow:hidden;background:var(--tile);box-shadow:0 1px 2px rgba(40,30,20,.08),0 18px 40px -12px rgba(40,30,20,.28);transition:transform .6s var(--ease)}
+.feat:hover .ph:first-child{transform:translateY(-6px) rotate(-.6deg)}
+.feat:hover .ph:last-child{transform:translateY(-6px) rotate(.6deg)}
+.feat .ph img,.feat .ph video,.tile .pic img,.tile .pic video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+video.lazy{opacity:0;transition:opacity .3s}
+video.live{opacity:1}
+.feat .meta{display:flex;justify-content:space-between;align-items:baseline;gap:24px;margin-top:18px}
+.feat h3{font:400 22px/1.3 var(--serif);letter-spacing:-.01em}
+.feat .cap{white-space:nowrap}
+
+/* filter, a segmented control with a sliding thumb */
+.seg{position:relative;display:inline-flex;padding:4px;border-radius:999px;background:var(--tile)}
+.seg button{position:relative;z-index:1;padding:7px 15px;font-size:13px;color:var(--soft);transition:color .25s}
+.seg button.on{color:var(--ink)}
+.seg .thumb{position:absolute;top:4px;bottom:4px;left:0;border-radius:999px;background:#fff;box-shadow:0 1px 3px rgba(40,30,20,.12);transition:transform .45s cubic-bezier(.3,1.25,.4,1),width .45s cubic-bezier(.3,1.25,.4,1)}
+
+/* grid */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:36px 22px;margin-bottom:140px}
+.tile{display:block;text-align:left;cursor:pointer}
+.tile .pic{position:relative;aspect-ratio:4/5;border-radius:16px;overflow:hidden;background:var(--tile);transition:transform .5s var(--ease)}
+.tile:hover .pic{transform:translateY(-4px)}
+.tile b{display:block;margin-top:12px;font:400 19px/1.25 var(--serif);letter-spacing:-.005em}
+.tile span{display:block;margin-top:3px;font-size:14px;line-height:1.45;color:var(--mute)}
+.tile.out{display:none}
+
+/* about */
+.about{display:grid;grid-template-columns:1fr 1.45fr;gap:64px;padding:96px 0 120px;border-top:1px solid var(--line)}
+.about h2{font:400 32px/1.1 var(--serif);letter-spacing:-.015em}
+.about .body p{font:400 21px/1.5 var(--serif);color:var(--ink);letter-spacing:-.005em}
+.about .body p+p{margin-top:18px}
+.does{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;padding-top:28px;border-top:1px solid var(--line)}
+.does b{display:block;font-weight:500;font-size:15px;margin-bottom:6px}
+.does span{font-size:14px;color:var(--soft);line-height:1.5}
+
+/* footer */
+footer{background:var(--foot);color:var(--foot-ink);padding:80px 0 56px}
+footer .top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px}
+footer h2{font:400 clamp(28px,3.2vw,40px)/1.15 var(--serif);letter-spacing:-.015em;max-width:12em}
+footer .cap{color:var(--foot-mute);margin-bottom:16px;display:block}
+footer ul{list-style:none;display:grid;gap:8px}
+footer li a,footer li button{font-size:16px;color:var(--foot-ink);opacity:.8;transition:opacity .2s;text-align:left}
+footer li a:hover,footer li button:hover{opacity:1}
+footer .bottom{display:flex;justify-content:space-between;margin-top:72px;padding-top:22px;border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:var(--foot-mute)}
+.swap{display:inline-grid;overflow:hidden;vertical-align:top}
+.swap i{font-style:normal;grid-area:1/1;transition:transform .45s var(--ease),opacity .3s}
+.swap i+i{transform:translateY(100%);opacity:0}
 .copied .swap i:first-child{transform:translateY(-100%);opacity:0}
-.copied .swap i:last-child{transform:none;opacity:1}
+.copied .swap i+i{transform:none;opacity:1}
 
-/* the switcher */
-.sw{position:fixed;inset:0;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab}
-.sw.dragging{cursor:grabbing}
-.card{position:absolute;left:50%;top:0;will-change:transform;transform-origin:50% 50%}
-.frame{position:absolute;inset:0;border-radius:20px;overflow:hidden;box-shadow:var(--card-shadow);background:#888;transform:translateZ(0)}
-.frame img,.frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
-.frame video{opacity:0}
-.frame video.live{opacity:1}
-.shade{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none}
-.label{position:absolute;left:2px;bottom:calc(100% + 10px);display:flex;align-items:center;gap:8px;transform-origin:0 100%;white-space:nowrap;pointer-events:none}
-.label img{width:22px;height:22px;border-radius:6px;object-fit:cover;box-shadow:0 0 0 .5px var(--hair)}
-.label span{font-size:15px;font-weight:600;letter-spacing:-.015em;text-transform:capitalize}
+/* viewer */
+.viewer{position:fixed;inset:0;z-index:50;display:grid;place-items:center;visibility:hidden}
+.viewer.open{visibility:visible}
+.viewer .scrim{position:absolute;inset:0;background:rgba(30,26,22,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0}
+.viewer .box{position:relative;display:flex;flex-direction:column;align-items:center}
+.viewer .screen{position:relative;height:min(78vh,calc((100vw - 40px)*1.25));aspect-ratio:4/5;border-radius:18px;overflow:hidden;background:var(--tile);box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.viewer .screen video,.viewer .screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.viewer .info{margin-top:18px;text-align:center;color:#f3eee7;max-width:min(560px,calc(100vw - 40px))}
+.viewer .info b{font:400 22px/1.3 var(--serif)}
+.viewer .info p{margin-top:4px;font-size:15px;color:rgba(243,238,231,.65)}
+.viewer .ctrl{display:flex;gap:10px;justify-content:center;margin-top:14px}
+.viewer .ctrl button{height:36px;padding:0 14px;border-radius:999px;background:rgba(255,255,255,.12);color:#f3eee7;font-size:13px;transition:background .2s}
+.viewer .ctrl button:hover{background:rgba(255,255,255,.2)}
+.viewer .ctrl button:active{transform:scale(.96)}
+.viewer .side{position:absolute;top:50%;width:44px;height:44px;margin-top:-22px;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;display:grid;place-items:center;z-index:2;transition:background .2s}
+.viewer .side:hover{background:rgba(255,255,255,.22)}
+.viewer .prev{left:24px}.viewer .next{right:24px}
+.viewer .x{position:absolute;top:20px;right:24px;z-index:2;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;display:grid;place-items:center}
 
-/* what you see once a card is open */
-.detail{position:fixed;left:50%;z-index:40;width:min(560px,calc(100vw - 32px));transform:translateX(-50%);text-align:center;pointer-events:none;opacity:0}
-.detail p{font-size:17px;letter-spacing:-.022em;line-height:1.35}
-.detail p::first-letter{text-transform:uppercase}
-.detail .row{margin-top:6px;color:var(--mute);font-size:15px;display:flex;gap:14px;justify-content:center}
-.detail button{color:var(--link)}
-
-/* position ruler, scrubbable */
-.ruler{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:45;display:flex;align-items:flex-end;height:30px;padding:0 6px;touch-action:none;cursor:ew-resize}
-.ruler i{display:block;width:9px;height:100%;position:relative}
-.ruler i::after{content:"";position:absolute;left:4px;bottom:0;width:1.5px;border-radius:1px;background:var(--ink);height:var(--h,5px);opacity:var(--o,.25)}
-
-@media (max-width:700px){
-  .bar{padding:16px}
-  .who b,.reach .links{font-size:16px}
-  .who span,.reach>span{font-size:13px}
-  .reach .links{gap:14px}
-  .frame{border-radius:16px}
-  .label span{font-size:14px}
-  .label img{width:20px;height:20px;border-radius:5px}
-  .ruler{bottom:max(22px,env(safe-area-inset-bottom))}
-  .ruler i{width:8px}
-  .ruler i::after{left:3.25px}
-  .detail p{font-size:16px}
+@media (max-width:900px){
+  .grid{grid-template-columns:repeat(2,1fr);gap:28px 14px}
+  .about{grid-template-columns:1fr;gap:24px}
+  footer .top{grid-template-columns:1fr 1fr;row-gap:44px}
+  footer h2{grid-column:1/-1}
 }
+@media (max-width:640px){
+  :root{--wrap:calc(100vw - 32px)}
+  .links{gap:20px}
+  .hero{padding:56px 0 56px}
+  .hero p{font-size:16px}
+  .head{flex-direction:column;align-items:flex-start;gap:14px}
+  .head h2,.about h2{font-size:28px}
+  .featured{gap:48px;margin-bottom:84px}
+  .feat .stage{aspect-ratio:1/1}
+  .feat .ph{height:82%}
+  .feat .ph+.ph{display:none}
+  .feat .meta{flex-direction:column;gap:6px;margin-top:14px}
+  .feat h3{font-size:20px}
+  .seg{max-width:100%;overflow-x:auto;scrollbar-width:none}
+  .seg button{padding:7px 12px;white-space:nowrap}
+  .tile b{font-size:17px}
+  .tile span{font-size:13px}
+  .about{padding:64px 0 80px}
+  .about .body p{font-size:19px}
+  .does{grid-template-columns:1fr;gap:18px}
+  footer{padding:60px 0 40px}
+  footer .bottom{flex-direction:column;gap:6px}
+  .viewer .side{display:none}
+  .viewer .x{top:12px;right:12px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
 
-<header class="bar">
-  <div class="who"><b>Dias Sekenov</b><span>Product designer who codes</span></div>
-  <div class="reach">
-    <div class="links" id="links"></div>
-    <span>Open for projects</span>
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">Dias Sekenov</a>
+    <div class="links"><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></div>
   </div>
+</nav>
+
+<header class="hero wrap" id="top">
+  <h1>Hi, I’m Dias, a product designer who codes the <em>small moments</em> people feel.</h1>
+  <p>I take the tiny interactions everyone knows from their phone and give them physics, timing and a punchline. Every piece below is designed and built in code, then recorded straight from the browser.</p>
+  <div class="status"><i></i>Open for projects · <a href="#contact">get in touch</a></div>
 </header>
 
-<main class="sw" id="sw" aria-label="pieces"></main>
+<main id="work">
+  <section class="wrap">
+    <div class="head"><h2>Selected work</h2><span class="cap" id="featCount"></span></div>
+    <div class="featured" id="featured"></div>
+  </section>
 
-<div class="detail" id="detail" aria-live="polite">
-  <p id="desc"></p>
-  <div class="row"><span id="loop"></span><button id="sound">Sound on</button></div>
+  <section class="wrap">
+    <div class="head"><h2>More pieces</h2><div class="seg" id="seg"><span class="thumb"></span></div></div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="wrap about" id="about">
+    <h2>About</h2>
+    <div class="body">
+      <p>I’m a product designer who writes the code for my own ideas. I like the part of a product most people never notice until it’s missing: how a bubble grows, how a list springs back, how long a button waits before it answers.</p>
+      <p>Most of my pieces start from a feeling everyone has had on their phone, like waiting for a reply or deleting a message too late, and end as a working interaction you can actually touch.</p>
+      <div class="does">
+        <div><b>Product design</b><span>Flows, screens and systems for apps on phone and desktop.</span></div>
+        <div><b>Interaction and motion</b><span>Gestures, springs, timing and sound that make an interface feel physical.</span></div>
+        <div><b>Prototypes in code</b><span>HTML, Canvas and WebGL, built to be handed off or shipped.</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="top">
+      <h2>Have something that should feel better? Let’s talk.</h2>
+      <div><span class="cap">Let’s chat</span><ul>
+        <li><button id="mail"><span class="swap"><i>Email</i><i>Copied</i></span></button></li>
+        <li><a href="https://x.com/sekenoov" target="_blank" rel="noopener">DM on X</a></li>
+      </ul></div>
+      <div><span class="cap">Socials</span><ul>
+        <li><a href="https://x.com/sekenoov" target="_blank" rel="noopener">X</a></li>
+        <li><a href="https://www.threads.com/@sekenov.ai" target="_blank" rel="noopener">Threads</a></li>
+      </ul></div>
+      <div><span class="cap">Navigation</span><ul>
+        <li><a href="#work">Work</a></li><li><a href="#about">About</a></li><li><a href="#top">Top</a></li>
+      </ul></div>
+    </div>
+    <div class="bottom"><span>© 2026 Dias Sekenov</span><span>sekenoov@gmail.com</span></div>
+  </div>
+</footer>
+
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="piece">
+  <div class="scrim"></div>
+  <button class="x" aria-label="close"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+  <button class="side prev" aria-label="previous"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <button class="side next" aria-label="next"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="m6 3 5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <div class="box">
+    <div class="screen"><img alt=""><video playsinline loop></video></div>
+    <div class="info"><b></b><p></p>
+      <div class="ctrl"><button id="vSound">Sound on</button><button id="vTheme">Dark version</button></div>
+    </div>
+  </div>
 </div>
 
-<nav class="ruler" id="ruler" aria-label="position"></nav>
-
 <script>
-const ME = { x:'sekenoov', threads:'sekenov.ai', email:'sekenoov@gmail.com' };
+const EMAIL = 'sekenoov@gmail.com';
+const CAT = { texting:'Messaging', ai:'AI', work:'Work', email:'Work', phone:'Everyday', tv:'Everyday' };
 
-// folder, name, one line, where the poster frame sits (fraction of the loop)
+// folder, name, line, tags, poster frame (fraction of the loop)
 const P = [
-  ['online','online','messages circle the green dot like moths around a porch light',0.6],
-  ['mute','good','a whole weekend story told on mute piles up in the call tile',0.2],
-  ['watching','still watching','continue watching pulls the cursor away from back like a magnet',0.9],
-  ['brunch','thank god','friends cancel brunch one by one and drop out of the group header',0.8],
-  ['pick','you pick','lunch indecision as a ping-pong rally until the replies shrink to “u”',0.3],
-  ['anyway','anyway','do not disturb bounces the boss, then “quick question” breaks it',0.4],
-  ['hbd','hbd','every word you deleted piles up on the keyboard',0.5],
-  ['fold','fold','each “are you sure?” folds the answer like a note',0.9],
-  ['refresh','refresh','pull to refresh and “unfortunately,” drops in like every other email',0.3],
-  ['nvm','nvm','a 7:48 voice note unrolls across the screen like tape',0.3],
-  ['hey','hey','a 2 am “hey” pulls the whole lock screen in',0.8],
-  ['unsend','unsend','five rubber bands hold the sent message, your finger is late to undo',0.3],
-  ['source','source','the link in the answer is a 404 and the answer falls apart plank by plank',0.6],
-  ['typing','typing','the typing bubble inflates like a balloon on “are you mad at me?”',0.8],
-  ['monday','later','monday as a macos update you can’t postpone',0.3],
-  ['sunday','charged','the phone charges all weekend, monday eats it by 9 am',0.8],
-  ['alarms','no alarms','swipe the alarms away, one of them never turns off',0.9],
-  ['shake','shake','shake the phone and the em dashes fall out of the answer',0.2],
-  ['friday','weekend','at 5:00 pm a weekend block pushes the weekdays aside',0.7],
-  ['brake','brake','stop a streaming answer and the words crash by inertia',0.9],
-  ['cooldown','cooldown','hold send and an angry email cools down into corporate',0.5],
-  ['almost','almost','the answer spins like a slot reel between no and yes',0.3],
-  ['rabbit','rabbit hole','one word of the answer becomes the next question, forever',0.6],
-  ['develop','develop','an image develops out of noise, word by word of the prompt',0.4],
-  ['pinch','pinch','pinch an ai answer from 112 words down to 9',0.8],
-  ['compact','compact','the chat compresses and the facts fly into a summary',0.2],
-].map(([id,name,desc,at])=>({id,name,desc,at}));
-const N = P.length;
+  ['online','Online','messages fly to the green status dot like moths to a porch light',['texting','work'],.6],
+  ['mute','Good','a whole weekend story told on mute piles up in the call tile',['work'],.2],
+  ['watching','Still watching','continue watching pulls the cursor away from back like a magnet',['tv'],.9],
+  ['brunch','Thank god','friends cancel brunch one by one and drop out of the group header',['texting'],.8],
+  ['pick','You pick','lunch indecision as a ping-pong rally until the replies shrink to “u”',['texting'],.3],
+  ['anyway','Anyway','do not disturb bounces the boss, then “quick question” breaks it',['work','phone'],.4],
+  ['hbd','Hbd','every word you deleted piles up on the keyboard',['texting'],.5],
+  ['fold','Fold','each “are you sure?” folds the AI answer like a note',['ai'],.9],
+  ['refresh','Refresh','pull to refresh and “unfortunately,” drops in like every other email',['email'],.3],
+  ['nvm','Nvm','a 7:48 voice note unrolls across the screen like tape',['texting'],.3],
+  ['hey','Hey','a 2 AM “hey” pulls the whole lock screen in',['texting','phone'],.8],
+  ['unsend','Unsend','rubber bands hold the sent message while your finger runs for undo',['texting'],.3],
+  ['source','Source','the link in the answer is a 404 and the answer falls apart plank by plank',['ai'],.6],
+  ['typing','Typing','the typing bubble inflates like a balloon on “are you mad at me?”',['texting'],.8],
+  ['monday','Later','Monday as a macOS update you can’t postpone',['work'],.3],
+  ['sunday','Charged','the phone charges all weekend, Monday eats it by 9 AM',['phone'],.8],
+  ['alarms','No alarms','swipe the alarms away, one of them never turns off',['phone'],.9],
+  ['shake','Shake','shake the phone and the em dashes fall out of the answer',['ai','phone'],.2],
+  ['friday','Weekend','at 5:00 PM a weekend block pushes the weekdays aside',['work'],.7],
+  ['brake','Brake','stop a streaming answer and the words crash by inertia',['ai'],.9],
+  ['cooldown','Cooldown','hold send and an angry email cools down into corporate',['email'],.5],
+  ['almost','Almost','the answer spins like a slot reel between no and yes',['ai'],.3],
+  ['rabbit','Rabbit hole','one word of the answer becomes the next question, forever',['ai'],.6],
+  ['develop','Develop','an image develops out of noise, word by word of the prompt',['ai'],.4],
+  ['pinch','Pinch','pinch an AI answer from 112 words down to 9',['ai'],.8],
+  ['compact','Compact','the chat compresses and the facts fly into a summary',['ai'],.2],
+].map(([id,name,line,tags,at])=>({id,name,line,tags,at,cats:[...new Set(tags.map(t=>CAT[t]))]}));
+const byId = Object.fromEntries(P.map(p=>[p.id,p]));
 
-const $ = s => document.querySelector(s);
-const clamp = (v,a,b) => Math.min(b,Math.max(a,v));
-const lerp = (a,b,t) => a+(b-a)*t;
-const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const dark = matchMedia('(prefers-color-scheme: dark)');
-const theme = () => dark.matches ? 'dark' : 'light';
-const src = (p,kind) => `media/${p.id}-${theme()}${kind}`;
+// the six that lead, each with a title written like a case and its own backdrop
+const FEATURED = [
+  ['typing','A typing bubble that inflates on “are you mad at me?”','#d9cfe6'],
+  ['unsend','Rubber bands that hold back a message you want to unsend','#e8d5c4'],
+  ['hey','A 2 AM “hey” that pulls the whole lock screen in','#c9d3df'],
+  ['online','Messages that circle a green status dot like moths','#cddcc9'],
+  ['nvm','A 7:48 voice note that unrolls across the chat like tape','#e6dcc2'],
+  ['pinch','Pinching an AI answer from 112 words down to 9','#d6d2cc'],
+];
+const featIds = FEATURED.map(f=>f[0]);
+const rest = P.filter(p=>!featIds.includes(p.id));
+const order = [...featIds.map(id=>byId[id]), ...rest];   // the viewer walks through this
 
-/* ---------- springs: damping ratio + response, the UIKit way ---------- */
-class Spring{
-  constructor(x){ this.x=x; this.v=0; this.t=x; this.z=1; this.r=.4 }
-  to(t,{v=this.v,z=1,r=.4}={}){ this.t=t; this.v=v; this.z=z; this.r=reduced?.08:r }
-  set(x){ this.x=x; this.t=x; this.v=0 }
-  step(dt){
-    const k=(2*Math.PI/this.r)**2, c=4*Math.PI*this.z/this.r;
-    const n=Math.max(1,Math.ceil(dt*240)), h=dt/n;
-    for(let i=0;i<n;i++){ this.v += (-k*(this.x-this.t) - c*this.v)*h; this.x += this.v*h }
-    if(Math.abs(this.x-this.t)<1e-4 && Math.abs(this.v)<1e-3){ this.x=this.t; this.v=0 }
-  }
+const $ = s=>document.querySelector(s);
+const media = (p,theme,kind)=>`media/${p.id}-${theme}${kind}`;
+
+function videoEl(p,theme){
+  const v = document.createElement('video');
+  v.muted = true; v.loop = true; v.playsInline = true; v.preload = 'none';
+  v.className = 'lazy'; v.dataset.src = media(p,theme,'.mp4'); v.dataset.at = p.at;
+  v.addEventListener('playing',()=>v.classList.add('live'));
+  return v;
 }
-// Apple's projection from Designing Fluid Interfaces: where a flick would come to rest
-const project = (v,d=.998) => (v/1000)*d/(1-d);
-// soft edge: the further past the end, the less it follows
-const rubber = (o,dim,c=.55) => (o*dim*c)/(dim+c*Math.abs(o));
+function picture(p,theme){
+  const img = new Image(); img.alt = ''; img.loading = 'lazy'; img.decoding = 'async';
+  img.src = media(p,theme,'.jpg');
+  return img;
+}
 
-const pos  = new Spring(0);   // continuous index of the front card
-const open = new Spring(0);   // 0 switcher, 1 card opened
-const lift = new Spring(0);   // vertical pull on the front card, px
-
-/* ---------- build ---------- */
-const sw = $('#sw'), ruler = $('#ruler');
-const cards = P.map((p,i)=>{
-  const el = document.createElement('div');
-  el.className = 'card'; el.style.zIndex = i; el.dataset.i = i;
-  el.setAttribute('aria-label', p.name);
-  el.innerHTML = `<div class="label"><img alt=""><span>${p.name}</span></div>
-    <div class="frame"><img alt="" decoding="async"><video muted loop playsinline preload="none"></video><div class="shade"></div></div>`;
-  sw.appendChild(el);
-  const c = { el, i, label:el.querySelector('.label'), ico:el.querySelector('.label img'),
-    poster:el.querySelector('.frame img'), video:el.querySelector('video'), shade:el.querySelector('.shade'),
-    shown:true, loaded:false };
-  c.video.addEventListener('playing',()=>c.video.classList.add('live'));
-  c.video.addEventListener('loadedmetadata',()=>{ if(front===i) showLoop() });
-  return c;
+/* featured */
+const feat = $('#featured');
+$('#featCount').textContent = `${FEATURED.length} of ${P.length}`;
+FEATURED.forEach(([id,title,color])=>{
+  const p = byId[id];
+  const a = document.createElement('a');
+  a.className = 'feat'; a.href = '#'+id; a.style.setProperty('--c',color);
+  a.innerHTML = `<div class="stage"><div class="ph"></div><div class="ph"></div></div>
+    <div class="meta"><h3>${title}</h3><span class="cap">${p.cats.join(', ')}, Interaction</span></div>`;
+  const [l,d] = a.querySelectorAll('.ph');
+  l.append(picture(p,'light'), videoEl(p,'light'));
+  d.append(picture(p,'dark'), videoEl(p,'dark'));
+  a.onclick = e=>{ e.preventDefault(); openViewer(order.indexOf(p), l) };
+  feat.appendChild(a);
 });
-const ticks = P.map(p=>{ const t=document.createElement('i'); t.title=p.name; ruler.appendChild(t); return t });
 
-function paint(){
-  cards.forEach((c,i)=>{
-    c.ico.src = src(P[i],'-t.jpg');
-    c.poster.src = src(P[i],'.jpg');
-    if(c.loaded){
-      const t = c.video.currentTime, playing = c.i===front;
-      c.video.classList.remove('live');
-      c.video.src = src(P[i],'.mp4');
-      c.video.addEventListener('loadedmetadata',()=>{ c.video.currentTime=t; if(playing) c.video.play().catch(()=>{}) },{once:true});
-    }
+/* grid + filter */
+const grid = $('#grid');
+const tiles = rest.map(p=>{
+  const b = document.createElement('a');
+  b.className = 'tile'; b.href = '#'+p.id;
+  b.innerHTML = `<div class="pic"></div><b>${p.name}</b><span>${p.line.charAt(0).toUpperCase()+p.line.slice(1)}</span>`;
+  b.querySelector('.pic').append(picture(p,'light'), videoEl(p,'light'));
+  b.onclick = e=>{ e.preventDefault(); openViewer(order.indexOf(p), b.querySelector('.pic')) };
+  grid.appendChild(b);
+  return {b,p};
+});
+
+const seg = $('#seg'), thumb = seg.querySelector('.thumb');
+const filters = ['All','Messaging','AI','Work','Everyday'];
+const segBtns = filters.map(f=>{
+  const n = f==='All' ? rest.length : rest.filter(p=>p.cats.includes(f)).length;
+  const b = document.createElement('button'); b.textContent = f; b.title = `${n} pieces`;
+  b.onclick = ()=>setFilter(f,b);
+  seg.appendChild(b); return b;
+});
+function moveThumb(b){ thumb.style.width = b.offsetWidth+'px'; thumb.style.transform = `translateX(${b.offsetLeft}px)` }
+function setFilter(f,b){
+  segBtns.forEach(x=>x.classList.toggle('on',x===b)); moveThumb(b);
+  let n = 0;
+  tiles.forEach(({b:t,p})=>{
+    const show = f==='All' || p.cats.includes(f);
+    t.classList.toggle('out',!show);
+    if(show) t.animate([{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'none'}],
+      {duration:420,delay:Math.min(n++,12)*30,easing:'cubic-bezier(.2,.8,.2,1)',fill:'backwards'});
   });
 }
-dark.addEventListener('change', paint);
+segBtns[0].classList.add('on');
+moveThumb(segBtns[0]);
+document.fonts.ready.then(()=>moveThumb(segBtns[0]));
+addEventListener('resize',()=>moveThumb(seg.querySelector('button.on')));
 
-/* contacts */
-$('#links').innerHTML =
-  `<a href="https://x.com/${ME.x}" target="_blank" rel="noopener">X</a>`+
-  `<a href="https://www.threads.com/@${ME.threads}" target="_blank" rel="noopener">Threads</a>`+
-  `<button id="mail" title="${ME.email}"><span class="swap"><i>Email</i><i>Copied</i></span></button>`;
+/* videos play only while on screen */
+const io = new IntersectionObserver(entries=>{
+  for(const e of entries){
+    const v = e.target;
+    if(e.isIntersecting){
+      if(!v.src){
+        v.src = v.dataset.src;
+        v.addEventListener('loadedmetadata',()=>{ v.currentTime = v.duration*(+v.dataset.at) },{once:true});
+      }
+      v.play().catch(()=>{});
+    } else if(v.src) v.pause();
+  }
+},{threshold:.35});
+document.querySelectorAll('video.lazy').forEach(v=>io.observe(v));
+
+/* viewer: grows out of the card you clicked, shrinks back into it */
+const viewer = $('#viewer'), screen = viewer.querySelector('.screen'), vVid = screen.querySelector('video'), vImg = screen.querySelector('img');
+const scrim = viewer.querySelector('.scrim');
+let cur = -1, origin = null, vTheme = 'light', vSound = true;
+function load(i){
+  cur = (i+order.length)%order.length;
+  const p = order[cur];
+  vImg.src = media(p,vTheme,'.jpg');
+  const t = vVid.dataset.id===p.id ? vVid.currentTime : p.at;
+  const keep = vVid.dataset.id===p.id;
+  vVid.dataset.id = p.id;
+  vVid.src = media(p,vTheme,'.mp4');
+  vVid.muted = !vSound;
+  vVid.addEventListener('loadedmetadata',()=>{ vVid.currentTime = keep ? t : vVid.duration*p.at },{once:true});
+  vVid.play().catch(()=>{ vVid.muted = true; vVid.play().catch(()=>{}) });
+  viewer.querySelector('.info b').textContent = p.name;
+  viewer.querySelector('.info p').textContent = p.line.charAt(0).toUpperCase()+p.line.slice(1);
+  $('#vTheme').textContent = vTheme==='light' ? 'Dark version' : 'Light version';
+  $('#vSound').textContent = vSound ? 'Sound on' : 'Sound off';
+  history.replaceState(null,'','#'+p.id);
+}
+function flipFrom(el){
+  const a = el.getBoundingClientRect(), b = screen.getBoundingClientRect();
+  return `translate(${a.left+a.width/2-(b.left+b.width/2)}px,${a.top+a.height/2-(b.top+b.height/2)}px) scale(${a.width/b.width})`;
+}
+function openViewer(i,el){
+  origin = el; load(i);
+  viewer.classList.add('open'); document.body.style.overflow = 'hidden';
+  scrim.animate([{opacity:0},{opacity:1}],{duration:300,fill:'forwards'});
+  screen.animate([{transform:flipFrom(el),borderRadius:'14px'},{transform:'none',borderRadius:'18px'}],{duration:520,easing:'cubic-bezier(.2,.9,.25,1)'});
+  viewer.querySelectorAll('.info,.side,.x').forEach(n=>n.animate([{opacity:0},{opacity:1}],{duration:300,delay:180,fill:'backwards'}));
+}
+function closeViewer(){
+  if(!viewer.classList.contains('open')) return;
+  vVid.pause();
+  const p = order[cur];
+  const back = document.querySelector(`.feat[href="#${p.id}"] .ph, .tile[href="#${p.id}"]:not(.out) .pic`);
+  const el = back && back.getBoundingClientRect().height ? back : origin;
+  scrim.animate([{opacity:1},{opacity:0}],{duration:260,fill:'forwards'});
+  viewer.querySelectorAll('.info,.side,.x').forEach(n=>n.animate([{opacity:1},{opacity:0}],{duration:150,fill:'forwards'}));
+  screen.animate([{transform:'none'},{transform:flipFrom(el)}],{duration:380,easing:'cubic-bezier(.4,0,.2,1)'}).finished.then(()=>{
+    viewer.classList.remove('open'); document.body.style.overflow = '';
+    viewer.querySelectorAll('.info,.side,.x').forEach(n=>n.getAnimations().forEach(a=>a.cancel()));
+    history.replaceState(null,'',location.pathname);
+  });
+}
+function step(d){
+  screen.animate([{opacity:1,transform:'none'},{opacity:0,transform:`translateX(${-d*24}px)`}],{duration:140,easing:'ease-in'}).finished.then(()=>{
+    load(cur+d);
+    screen.animate([{opacity:0,transform:`translateX(${d*24}px)`},{opacity:1,transform:'none'}],{duration:300,easing:'cubic-bezier(.2,.8,.2,1)'});
+  });
+}
+viewer.querySelector('.x').onclick = closeViewer;
+scrim.onclick = closeViewer;
+viewer.querySelector('.prev').onclick = ()=>step(-1);
+viewer.querySelector('.next').onclick = ()=>step(1);
+$('#vSound').onclick = ()=>{ vSound = !vSound; vVid.muted = !vSound; $('#vSound').textContent = vSound ? 'Sound on' : 'Sound off' };
+$('#vTheme').onclick = ()=>{ vTheme = vTheme==='light' ? 'dark' : 'light'; load(cur) };
+addEventListener('keydown',e=>{
+  if(!viewer.classList.contains('open')) return;
+  if(e.key==='Escape') closeViewer();
+  else if(e.key==='ArrowRight') step(1);
+  else if(e.key==='ArrowLeft') step(-1);
+});
+// swipe sideways on the screen to move through pieces, down to close, tap to pause
+let sx=null, sy=null;
+screen.addEventListener('pointerdown',e=>{ sx=e.clientX; sy=e.clientY });
+screen.addEventListener('pointerup',e=>{
+  if(sx===null) return;
+  const dx=e.clientX-sx, dy=e.clientY-sy; sx=null;
+  if(Math.abs(dx)>50 && Math.abs(dx)>Math.abs(dy)) step(dx<0?1:-1);
+  else if(dy>80) closeViewer();
+  else if(Math.hypot(dx,dy)<6){ vVid.paused ? vVid.play() : vVid.pause() }
+});
+
+/* email copies itself */
 $('#mail').onclick = e=>{
   const b = e.currentTarget;
-  if(!navigator.clipboard){ location.href='mailto:'+ME.email; return }
-  navigator.clipboard.writeText(ME.email).then(()=>{
+  if(!navigator.clipboard){ location.href = 'mailto:'+EMAIL; return }
+  navigator.clipboard.writeText(EMAIL).then(()=>{
     b.classList.add('copied'); clearTimeout(b._t); b._t = setTimeout(()=>b.classList.remove('copied'),1800);
-  }).catch(()=>{ location.href='mailto:'+ME.email });
+  }).catch(()=>{ location.href = 'mailto:'+EMAIL });
 };
 
-/* ---------- geometry ---------- */
-let W,H,S,VW,VH,CY,OPEN,OPEN_Y,mobile;
-function layout(){
-  VW = innerWidth; VH = innerHeight; mobile = VW < 700;
-  const top = mobile ? 92 : 96, bottom = mobile ? 74 : 80;
-  W = mobile ? Math.min(VW*.8,(VH-top-bottom-60)*.8) : Math.min(VW*.3,(VH-top-bottom-60)*.8,440);
-  H = W*1.25; S = W*1.06;
-  CY = top + (VH-top-bottom)/2 + 14;
-  // opened card: as large as fits, with room for one line of text under it
-  const room = VH - top - bottom - 96;
-  OPEN = Math.max(1.05, Math.min(room/H, (VW-32)/W, 1.9));
-  OPEN_Y = top + 30 + H*OPEN/2 - CY;
-  cards.forEach(c=>{ c.el.style.width=W+'px'; c.el.style.height=H+'px'; c.el.style.marginLeft=-W/2+'px'; c.el.style.top=(CY-H/2)+'px' });
-  $('#detail').style.top = (CY + OPEN_Y + H*OPEN/2 + 18)+'px';
+/* a link to a piece opens it */
+const deep = order.findIndex(p=>'#'+p.id===location.hash);
+if(deep>=0){
+  const el = document.querySelector(`.feat[href="#${order[deep].id}"] .ph, .tile[href="#${order[deep].id}"] .pic`);
+  el.scrollIntoView({block:'center'});
+  setTimeout(()=>openViewer(deep,el),300);
 }
-addEventListener('resize', layout);
-
-/* ---------- render: everything comes from the three springs ---------- */
-let front = -1;
-const det = $('#detail');
-function render(){
-  const p = pos.x, o = clamp(open.x,0,1.2), oc = clamp(o,0,1), f = clamp(Math.round(p),0,N-1);
-  for(const c of cards){
-    const d = c.i - p;
-    const visible = d > -7 && d < 2.6;
-    if(visible !== c.shown){ c.el.style.visibility = visible ? '' : 'hidden'; c.shown = visible }
-    if(!visible) continue;
-
-    // right of the front card: full spacing, sliding over the top
-    // left of it: piling up underneath, smaller and darker
-    let x, s, dim;
-    if(d >= 0){ x = d*S; s = 1; dim = 0 }
-    else { x = -0.7*W*(1-Math.exp(.55*d)); s = 1 + .045*Math.max(d,-4); dim = Math.min(.55,-d*.2) }
-
-    let y = 0, op = 1;
-    if(c.i === f){
-      x = lerp(x,0,o); s = lerp(s,OPEN,o); y = lerp(0,OPEN_Y,o) + lift.x; dim = lerp(dim,0,oc);
-      if(oc < .01) s *= 1 - Math.min(.05, Math.abs(lift.x)/H*.2);
-    } else {
-      op = 1 - oc; s *= 1 - .06*oc; y = 30*oc;
-    }
-    c.el.style.transform = `translate3d(${x.toFixed(2)}px,${y.toFixed(2)}px,0) scale(${s.toFixed(4)})`;
-    c.el.style.opacity = op;
-    c.shade.style.opacity = dim;
-    // labels of buried cards fade before they collide
-    c.label.style.opacity = d < 0 ? clamp(1 + d*1.25, 0, 1) : 1;
-    c.label.style.transform = `scale(${(1/s).toFixed(4)})`;
-  }
-  ticks.forEach((t,i)=>{
-    const g = Math.exp(-((i-p)**2)/.9);
-    t.style.setProperty('--h', (5 + 13*g).toFixed(2)+'px');
-    t.style.setProperty('--o', (.22 + .78*g).toFixed(3));
-  });
-  det.style.opacity = clamp((o-.4)/.6,0,1);
-  det.style.transform = `translateX(-50%) translateY(${((1-oc)*10).toFixed(2)}px)`;
-  det.style.pointerEvents = o > .9 ? 'auto' : 'none';
-  if(f !== front) setFront(f);
-  if(playing !== front && Math.abs(pos.v) < 2.5 && !g) play(front);
-}
-
-/* ---------- media: only the front card plays ---------- */
-let soundOn = true;
-function showLoop(){ const v = cards[front].video; $('#loop').textContent = isFinite(v.duration) ? v.duration.toFixed(1)+' s loop' : '' }
-let playing = -1;
-function setFront(f){
-  const prev = cards[playing];
-  if(prev && playing !== f){ prev.video.pause(); prev.video.muted = true }
-  playing = -1;
-  front = f;
-  $('#desc').textContent = P[f].desc;
-  showLoop();
-  history.replaceState(null,'','#'+P[f].id);
-  document.title = `${P[f].name} · Dias Sekenov`;
-}
-// the video starts once the deck slows down, not for every card that flies past
-function play(f){
-  const c = cards[f], p = P[f];
-  playing = f;
-  if(!c.loaded){
-    c.loaded = true;
-    c.video.src = src(p,'.mp4');
-    // start where the poster frame was taken, so the switch to video is invisible
-    c.video.addEventListener('loadedmetadata',()=>{ c.video.currentTime = p.at < 1 ? c.video.duration*p.at : p.at },{once:true});
-  }
-  c.video.muted = !(open.t > .5 && soundOn);
-  c.video.play().catch(()=>{});
-}
-// browsers pause muted video in the background or in low power mode; pick it back up
-setInterval(()=>{ const v = cards[playing]?.video; if(v && v.paused && !document.hidden) v.play().catch(()=>{}) },1200);
-
-function setOpen(on, v=0){
-  open.to(on?1:0,{v, z: on ? .86 : 1, r: on ? .42 : .36});
-  if(on && playing !== front) play(front);
-  const vid = cards[front].video;
-  vid.muted = !(on && soundOn);
-  if(on && vid.paused) vid.play().catch(()=>{});
-  $('#sound').textContent = soundOn ? 'Sound on' : 'Sound off';
-}
-function toggleSound(){
-  soundOn = !soundOn;
-  cards[front].video.muted = !(soundOn && open.t > .5);
-  $('#sound').textContent = soundOn ? 'Sound on' : 'Sound off';
-}
-$('#sound').onclick = toggleSound;
-
-function goTo(i,opts={}){ pos.to(clamp(i,0,N-1),{v:pos.v, z:1, r:.42, ...opts}) }
-
-/* ---------- direct manipulation ---------- */
-let g = null;
-function idxOf(el){ const c = el && el.closest && el.closest('.card'); return c ? +c.dataset.i : -1 }
-sw.addEventListener('pointerdown',e=>{
-  if(e.button) return;
-  const hit = idxOf(e.target);
-  sw.setPointerCapture(e.pointerId);
-  g = { x0:e.clientX, y0:e.clientY, p0:pos.x, o0:open.x, axis:null, hit, hist:[[e.clientX,e.clientY,e.timeStamp]] };
-  // catch whatever is moving, exactly where it is on screen
-  pos.set(pos.x); lift.set(lift.x); open.set(open.x);
-  sw.classList.add('dragging');
-});
-sw.addEventListener('pointermove',e=>{
-  if(!g) return;
-  const dx = e.clientX-g.x0, dy = e.clientY-g.y0;
-  g.hist.push([e.clientX,e.clientY,e.timeStamp]);
-  while(g.hist.length>2 && e.timeStamp-g.hist[0][2] > 100) g.hist.shift();
-  if(!g.axis){
-    if(Math.hypot(dx,dy) < 8) return;
-    g.axis = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y';
-    if(g.axis==='x' && g.o0 > .5) g.axis = 'none';
-  }
-  if(g.axis==='x'){
-    const raw = g.p0 - dx/S;
-    pos.set(raw < 0 ? -rubber(-raw,1) : raw > N-1 ? N-1 + rubber(raw-N+1,1) : raw);
-  } else if(g.axis==='y'){
-    if(g.o0 > .5){
-      // opened: pull it down to put it back
-      open.set(clamp(g.o0 - Math.max(0,dy)/(VH*.55), 0, 1));
-      lift.set(dy < 0 ? -rubber(-dy,H,.3) : dy*.35);
-    } else {
-      // in the deck: it follows, then resists
-      lift.set(rubber(dy,H,.5));
-    }
-  }
-});
-function release(e){
-  if(!g) return;
-  sw.classList.remove('dragging');
-  const h = g.hist, a = h[0], b = h[h.length-1], dt = Math.max(16,(b[2]-a[2]))/1000;
-  const vx = (b[0]-a[0])/dt, vy = (b[1]-a[1])/dt;
-  const dy = e.clientY - g.y0;
-
-  if(!g.axis){
-    // a tap
-    if(open.x > .5){ if(g.hit === front) toggleSound(); else setOpen(false) }
-    else if(g.hit === front) setOpen(true);
-    else if(g.hit >= 0) goTo(g.hit);
-  } else if(g.axis==='x'){
-    // the spring takes over at the finger's speed and lands where the flick was heading
-    const target = clamp(Math.round(pos.x + project(-vx)/S), 0, N-1);
-    pos.to(target,{v:-vx/S, z: Math.abs(vx) > 400 ? .86 : 1, r:.45});
-  } else if(g.axis==='y'){
-    if(g.o0 > .5){
-      // direction of the release decides, not only distance
-      const close = vy > 200 || (vy > -200 && dy > 90);
-      lift.to(0,{v:vy, z:.9, r:.4});
-      setOpen(!close, -vy/(VH*.55));
-    } else {
-      lift.to(0,{v:vy, z:.7, r:.42});
-    }
-  } else {
-    lift.to(0);
-  }
-  g = null;
-}
-sw.addEventListener('pointerup',release);
-sw.addEventListener('pointercancel',release);
-
-/* trackpad and wheel move the deck directly, then it settles in the direction of travel */
-let wheelRaw = null, wheelT = 0, wheelV = 0, wheelLast = 0;
-sw.addEventListener('wheel',e=>{
-  e.preventDefault();
-  if(open.t > .5){ if(Math.abs(e.deltaY) > 20) setOpen(false); return }
-  let d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-  if(e.deltaMode === 1) d *= 18;
-  if(wheelRaw === null) wheelRaw = pos.x;
-  wheelRaw = clamp(wheelRaw + d/S, -1, N);
-  pos.set(wheelRaw < 0 ? -rubber(-wheelRaw,1) : wheelRaw > N-1 ? N-1 + rubber(wheelRaw-N+1,1) : wheelRaw);
-  const now = e.timeStamp, dt = Math.max(8, now-wheelLast)/1000;
-  wheelV = .7*wheelV + .3*(d/S)/dt; wheelLast = now;
-  clearTimeout(wheelT);
-  wheelT = setTimeout(()=>{
-    const t = wheelV > 0 ? Math.ceil(pos.x - .15) : Math.floor(pos.x + .15);
-    pos.to(clamp(t,0,N-1),{v:0, z:1, r:.4});
-    wheelRaw = null; wheelV = 0;
-  },110);
-},{passive:false});
-
-/* ruler: scrub through everything */
-let scrub = false;
-function scrubTo(e){
-  const r = ruler.getBoundingClientRect();
-  const i = clamp(Math.floor((e.clientX - r.left - 6)/((r.width-12)/N)), 0, N-1);
-  pos.to(i,{v:pos.v, z:1, r:.28});
-}
-ruler.addEventListener('pointerdown',e=>{ scrub = true; ruler.setPointerCapture(e.pointerId); if(open.t>.5) setOpen(false); scrubTo(e) });
-ruler.addEventListener('pointermove',e=>{ if(scrub) scrubTo(e) });
-ruler.addEventListener('pointerup',()=>{ scrub = false });
-
-addEventListener('keydown',e=>{
-  if(e.metaKey||e.ctrlKey||e.altKey) return;
-  const k = e.key;
-  if(k==='ArrowRight'){ if(open.t>.5) setOpen(false); goTo(Math.round(pos.t)+1) }
-  else if(k==='ArrowLeft'){ if(open.t>.5) setOpen(false); goTo(Math.round(pos.t)-1) }
-  else if(k==='Enter'||k===' '){ e.preventDefault(); setOpen(open.t < .5) }
-  else if(k==='Escape'){ setOpen(false) }
-  else if(k==='Home'){ goTo(0) }
-  else if(k==='End'){ goTo(N-1) }
-});
-addEventListener('hashchange',()=>{ const i = P.findIndex(p=>'#'+p.id===location.hash); if(i>=0 && i!==Math.round(pos.t)) goTo(i) });
-
-/* ---------- loop ---------- */
-let last = performance.now();
-function frame(now){
-  const dt = Math.min(1/30,(now-last)/1000); last = now;
-  pos.step(dt); open.step(dt); lift.step(dt);
-  render();
-  requestAnimationFrame(frame);
-}
-
-/* ---------- start: the deck slides in from the right ---------- */
-const start = Math.max(0, P.findIndex(p=>'#'+p.id===location.hash));
-layout(); paint();
-if(reduced) pos.set(start); else { pos.set(start-2.4); pos.to(start,{z:1,r:.9}) }
-requestAnimationFrame(frame);
 </script>
 </body>
 </html>
